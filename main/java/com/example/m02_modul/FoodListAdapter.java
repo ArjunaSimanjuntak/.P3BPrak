@@ -160,6 +160,10 @@ public class FoodListAdapter extends BaseAdapter {
             bindingILFoods.ivStar.setImageResource(android.R.drawable.btn_star_big_off);
         }
 
+        Log.d("debug", "updateView.. ");
+        // supaya ada food di vh, update view di viewHolder??
+        vh.updateView(currentFood);
+
         // returns the view for the current row
         return convertView;
         //karna pake view holder, return layout root nya?
@@ -239,14 +243,32 @@ public class FoodListAdapter extends BaseAdapter {
         @Override
         public void onClick(View view) {
             Log.d("debug", "masuk onCLick vh");
+
+            //cek isi food di view ini
+            if(this.food == null) {
+                Log.d("debug", "isi food kosong");
+            }else {
+                Log.d("debug", "isi food ada..");
+                Log.d("debug", "isi title food di view skrng,,  " + this.food.getTitle());
+            }
+
+
             if(view == this.binding.ivStar) {
                 Log.d("debug", "view adlh binding.ivStar");
                 if(this.food.isFavorite()) {
                     Log.d("debug", "favoritenya aktif");
-                    this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_on);
+                    this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_off);
+                    this.food.setFavorite(false);
                 }else {
                     Log.d("debug", "favoritenya gaaktif");
-                    this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_off); }
+                    this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_on);
+                    this.food.setFavorite(true);
+                }
+            }
+
+            if(view == this.binding.ibBin) {
+                Log.d("debug", "view adlh binding.ibBin");
+                //delete view nya?
             }
         }
     }
