@@ -3,44 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--
-    Apa kegunaan xmlns:android pada baris 4 dan apa yang terjadi jika dihapus?
-    = itu sebagai pengganti namespace android:id di sebelah <LinearLayout
-    krn viewgroup tersebut membutuhkan namespace yg berfunsi sbg
-    -->
 
-    <EditText
-        android:id="@+id/et_edit"
+    <ListView
+        android:id="@+id/lst_foods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edtext_hint" />
+        android:layout_weight="1">
 
-    <Button
-        android:id="@+id/btn_action"
+    </ListView>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_action_text" />
-    <!--
-    Berdasarkan pengamatan anda, apakah perbedaan match_parent dengan wrap_content?
-    = match_parent mengikuti ukuran dari parent (komponen)nya
-    sedangkan wrap_content menyesuaikan ukurannya sesuai isi nilai/kalimat yg di dalamnya. semakin panjang, ukurannya semakin bertambah
-    -->
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_show_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="isi textview.."
-        android:textSize="@dimen/tv_size" />
-    <!--    hint, agar terisi bila masih kosong-->
-    <!--Perhatikan perbedaan pengaturan align pada View
-    dengan lebar match parent dan wrap_content. Apa perbedaannya
-    = saat wrap content, teks teralign di tengah view selayaknya.
-    saat match parent, teks tergeser ke kiri, mendempet ke sisi kiri.
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    Mengapa tidak digunakan ukuran px?
-    = karena seperti yg sudah dijelaskan di kelas, px adalah salah satu unit pengukuran yg bersifat absolut, sehingga kurang baik bila digunakan pada aplikasi multi devices -->
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Title" />
+
+            <EditText
+                android:id="@+id/etDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Details" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ADD" />
+    </LinearLayout>
 
 </LinearLayout>
-

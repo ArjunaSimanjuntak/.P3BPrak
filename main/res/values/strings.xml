@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">M0117059</string>
-    <string name="btn_action_text">Click</string>
-    <string name="edtext_hint">Please input some text</string>
+    <string name="app_name">M02-Modul</string>
 </resources>
-<!--Apa keuntungan dari pemisahan literal-literal ini dari kode java-nya?
-= bisa lebih rapi, dalam memperbaiki suata nilai atau translasi di masa depan, tanpa harus menyetuh kode java nya-->
