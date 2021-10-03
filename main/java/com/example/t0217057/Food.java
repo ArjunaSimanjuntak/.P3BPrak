@@ -6,7 +6,7 @@ public class Food {
     public Food(String title, String details, boolean isFavourite){
         this.title = title;
         this.details = details;
-        this.isFavourite = isFavourite;
+        this.isFavourite = false;
     }
 
     //Getter
@@ -36,4 +36,6 @@ public class Food {
     public void setTitle(String title) {
         this.title = title;
     }
+
+
 }

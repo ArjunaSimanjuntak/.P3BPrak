@@ -1,6 +1,7 @@
 package com.example.t0217057;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,7 +24,13 @@ public class FoodListAdapter extends BaseAdapter {
     }
 
     public void addLine(Food newItem){
+        Log.d("debug", "masuk add line");
         this.listItems.add(newItem);
+        this.notifyDataSetChanged();
+    }
+
+    public void removeList(Food item){
+        this.listItems.remove(item);
         this.notifyDataSetChanged();
     }
 
@@ -44,45 +51,90 @@ public class FoodListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        /*//Menggunakan RecycleView(membutuhkan viewHolder)
+        Log.d("debug", "Masuk getView");
+        /*ItemListFoodBinding binding = ItemListFoodBinding.inflate(this.activity.getLayoutInflater(), viewGroup, false);
+        //View itemView = this.activity.getLayoutInflater().inflate(R.layout.item_list_food, null);
+        Food currentFood = (Food)this.getItem(i);
+        View itemView = binding.getRoot();
+
+        //1. Title
+        TextView tvTitle = binding.tvListFood;
+        tvTitle.setText(currentFood.getTitle());
+
+        //2. Details
+        TextView tvDetails = binding.tvListDetail;
+        tvDetails.setText(currentFood.getDetails());
+
+        //3. isFavourite
+        if(currentFood.isFavourite()) {
+            binding.ivBtnStar.setImageResource(android.R.drawable.btn_star_big_on);
+        } else {
+            binding.ivBtnStar.setImageResource(android.R.drawable.btn_star_big_off);
+        }
+
+        return itemView;*/
+
+
+
+        //Menggunakan RecycleView(membutuhkan viewHolder)
         ViewHolder viewHolder;
         ItemListFoodBinding binding;
-        ActivityMainBinding binding2;
-
+        Food currentFood = (Food)this.getItem(i);
 
         if(view==null){
             binding = ItemListFoodBinding.inflate(this.activity.getLayoutInflater(), viewGroup, false);
-            binding2 = ActivityMainBinding.inflate(this.activity.getLayoutInflater());
             view = binding.getRoot();
-            viewHolder = new ViewHolder(view);
+            viewHolder = new ViewHolder(binding);
             view.setTag(viewHolder);
         }
         else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.updateView(this.getItem(i).toString(), this.getItem(i).toString());
+        viewHolder.updateView(currentFood);
 
-        return view;*/
+        return view;
     }
 
-    /*private class ViewHolder implements View.OnClickListener {
-        protected ItemListFoodBinding binding;
-        Food foodList;
+    private class ViewHolder implements View.OnClickListener {
+        ItemListFoodBinding binding;
+        Food currentFood;
 
-        public ViewHolder(View view){
+        public ViewHolder(ItemListFoodBinding binding){
+            Log.d("debug", "masuk ViewHolder");
             this.binding = binding;
-        }
 
-        public void updateView(String food, String details){
-            binding.tvListFood.setText(food);
-            binding.tvListDetail.setText(details);
+            binding.ivBtnStar.setOnClickListener(this);
+            binding.ibBtnDelete.setOnClickListener(this);
+        }
+        //Method updateView untuk set nilai dari informasi yang sudah ada(dalam kasus ini dari currentFood)
+        public void updateView(Food currentFood){
+            Log.d("debug", "masuk updateView");
+            binding.tvListFood.setText(currentFood.getTitle());
+            binding.tvListDetail.setText(currentFood.getDetails());
+            this.currentFood = currentFood;
         }
 
         @Override
         public void onClick(View view) {
+            Log.d("debug", "masuk onclick");
             if(view==binding.ivBtnStar){
-                binding.ivBtnStar.setImageResource(android.R.drawable.btn_star_big_on);
+                Log.d("debug", "masuk condition if view == ivBTN");
+                if(currentFood.isFavourite()) {
+                    Log.d("debug", "masuk condition if true");
+                    currentFood.setFavourite(false);
+                    binding.ivBtnStar.setImageResource(android.R.drawable.btn_star_big_off);
+
+                } else{
+                    Log.d("debug", "masuk condition if false");
+                    currentFood.setFavourite(true);
+                    binding.ivBtnStar.setImageResource(android.R.drawable.btn_star_big_on);
+
+                }
+            }
+            else if(view==binding.ibBtnDelete){
+                currentFood.isFavourite = false;
+                removeList(currentFood);
             }
         }
-    }*/
+    }
 }

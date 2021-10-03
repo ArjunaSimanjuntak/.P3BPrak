@@ -3,6 +3,7 @@ package com.example.t0217057;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Food food = new Food(binding.etTitle.getText().toString(), binding.etDetails.getText().toString(), false);
         if (view==binding.btnAdd){
-            this.adapter.addLine((Food) binding.etTitle.getText());
+            Log.d("debug", food.getTitle());
+            this.adapter.addLine(food);
             binding.etTitle.getText().clear();
             binding.etDetails.getText().clear();
             //atau bisa juga seperti ini
