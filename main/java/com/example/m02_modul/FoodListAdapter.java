@@ -1,6 +1,8 @@
 package com.example.m02_modul;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -273,7 +275,33 @@ public class FoodListAdapter extends BaseAdapter {
             if(view == this.binding.ibBin) {
                 Log.d("debug", "view adlh binding.ibBin");
                 //delete view nya?
-                removeFromList(this.food);
+
+                // removeFromList(this.food); //dipindah
+                //krn mau dipanggil dalam alert dialog, krn dalam, buat objekny disini supaya bisa dipanggil
+                Food theFoodInQuestion = this.food;
+
+                //cara keluarin dialog pas mau hapus??
+
+                // dari StackOverFlow
+                // https://stackoverflow.com/questions/2115758/how-do-i-display-an-alert-dialog-on-android
+                new AlertDialog.Builder(view.getContext())                                                    //perlu context sebagai parameter, biar bias sesuain sama theme context
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+
+                                removeFromList(theFoodInQuestion);                                          //knp gabisa manggil this.food dr sini?
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         }
     }
