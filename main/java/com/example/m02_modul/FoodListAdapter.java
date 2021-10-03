@@ -140,28 +140,28 @@ public class FoodListAdapter extends BaseAdapter {
         Food currentFood = (Food) this.getItem(i); //ambil dari list<Food> ke i
 
 
-        // pasang-pasang
+        // Pasang-pasang ( pasang 1,2,3 udah cukup di updateView (dlm view holder))
         // 1. title
 //        TextView tvTitle = convertView.findViewById(R.id.tvTitleFoods); //di modul prak idnya tv_food_title
 //        tvTitle.setText(currentFood.getTitle());
         //with binding
-        this.bindingILFoods.tvTitleFoods.setText(currentFood.getTitle());
+//        this.bindingILFoods.tvTitleFoods.setText(currentFood.getTitle());
 
         // 2. detail
-        this.bindingILFoods.tvDetailFoods.setText(currentFood.getDetails());
+//        this.bindingILFoods.tvDetailFoods.setText(currentFood.getDetails());
 
         // 3. favourite if true star_on, false star off
         //ImageView ivStar = convertView.findViewById(R.id.ivStar);
         //set tag to it
-        if (currentFood.isFavorite()) {
-//            ivStar.setImageResource(android.R.drawable.btn_star_big_on);
-            bindingILFoods.ivStar.setImageResource(android.R.drawable.btn_star_big_on);
-        }else {
-            bindingILFoods.ivStar.setImageResource(android.R.drawable.btn_star_big_off);
-        }
+//        if (currentFood.isFavorite()) {
+////            ivStar.setImageResource(android.R.drawable.btn_star_big_on);
+//            bindingILFoods.ivStar.setImageResource(android.R.drawable.btn_star_big_on);
+//        }else {
+//            bindingILFoods.ivStar.setImageResource(android.R.drawable.btn_star_big_off);
+//        }
 
         Log.d("debug", "updateView.. ");
-        // supaya ada food di vh, update view di viewHolder??
+        //                                                                                          supaya ada food di vh, update view di viewHolder??
         vh.updateView(currentFood);
 
         // returns the view for the current row
