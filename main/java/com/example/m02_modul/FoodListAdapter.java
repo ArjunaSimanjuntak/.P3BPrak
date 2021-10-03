@@ -88,6 +88,13 @@ public class FoodListAdapter extends BaseAdapter {
     //untuk modul ini diisi dengan return 0)
 
 
+    // method tambahan buat pas nekan tombol sampah
+    private void removeFromList(Food food) {
+        this.listFoods.remove(food);                                                                // .remove(object) keluarannya boolean
+        notifyDataSetChanged();
+    }
+
+
 
 //    @Override   //ga dipake,,
 //    public View getView(int i, View view, ViewGroup viewGroup) {
@@ -109,6 +116,7 @@ public class FoodListAdapter extends BaseAdapter {
 //    }
 
 
+    //      pas lagi ngetik di edit text layout main nya, deskripsi panjang (atau new line enter), masuk ke baris selanjutnya, kenapa masuk lagi ke getView ini?
     //getView untk T02
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
@@ -200,13 +208,9 @@ public class FoodListAdapter extends BaseAdapter {
     }
      */
 
-    //sesuain sama anak dari layout yg mau dipasang ke list view (item_list_food)
+//    sesuain sama anak dari layout yg mau dipasang ke list view (item_list_food)
+//    private dr adapter krn viewholder spesifik untuk sebuah adapter.
     private class ViewHolder implements View.OnClickListener{
-//        protected TextView title;
-//        protected TextView detail;
-//        protected ImageView starStatus;
-//        protected ImageButton garbageBin;
-
         ItemListFoodBinding binding;
 
         public Food food;
@@ -256,11 +260,11 @@ public class FoodListAdapter extends BaseAdapter {
             if(view == this.binding.ivStar) {
                 Log.d("debug", "view adlh binding.ivStar");
                 if(this.food.isFavorite()) {
-                    Log.d("debug", "favoritenya aktif");
+                    Log.d("debug", "favoritenya aktif,, ngubah ke gaaktif");
                     this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_off);
                     this.food.setFavorite(false);
                 }else {
-                    Log.d("debug", "favoritenya gaaktif");
+                    Log.d("debug", "favoritenya gaaktif,, ngubah ke aktif");
                     this.binding.ivStar.setImageResource(android.R.drawable.btn_star_big_on);
                     this.food.setFavorite(true);
                 }
@@ -269,6 +273,7 @@ public class FoodListAdapter extends BaseAdapter {
             if(view == this.binding.ibBin) {
                 Log.d("debug", "view adlh binding.ibBin");
                 //delete view nya?
+                removeFromList(this.food);
             }
         }
     }

@@ -2,9 +2,11 @@ package com.example.m02_modul;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Log.d("debug", "masuk onClick");
 
+        // kalo tekan add...
         if(view == this.bindingLMain.buttonAdd) {
             Log.d("debug", "onclick, button add");
 
@@ -102,7 +105,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("debug", "addLine foodBaru");
                 this.FoodListAdptr.addLine(foodBaru);
                                                             //details taro dimana??
+
+                // challenge, kosongin lg tv yg baru diisi
+                this.bindingLMain.etTitle.setText("");
+                this.bindingLMain.etDetails.setText("");
+
+                // challenge, hilangin soft keyboard nya habis itu
+                // ini sebenarnya ngapain (?)
+                // Check if no view has focus:
+                View viewCheck = this.getCurrentFocus();                                            //masukin ke view ini apa yg lg difokusin
+                if (viewCheck != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);    //perlu import input method manager dan context
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
             }
+
+
         }
     }
 }
