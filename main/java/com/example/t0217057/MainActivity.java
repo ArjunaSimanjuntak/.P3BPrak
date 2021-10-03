@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ListView;
 
 import com.example.t0217057.databinding.ActivityMainBinding;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.adapter.addLine(food);
             binding.etTitle.getText().clear();
             binding.etDetails.getText().clear();
+            binding.etTitle.onEditorAction(EditorInfo.IME_ACTION_DONE);
             //atau bisa juga seperti ini
             //binding.etTitle.setText("");
         }

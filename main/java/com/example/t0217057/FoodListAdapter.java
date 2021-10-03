@@ -1,6 +1,8 @@
 package com.example.t0217057;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,8 +134,28 @@ public class FoodListAdapter extends BaseAdapter {
                 }
             }
             else if(view==binding.ibBtnDelete){
-                currentFood.isFavourite = false;
-                removeList(currentFood);
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Delete Item");
+                builder.setMessage("Are you sure want to delete this item?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        removeList(currentFood);
+                    }
+                });
+                //cara 1
+                builder.setNegativeButton("No", null);
+                //cara 2
+                /*builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });*/
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                /*currentFood.isFavourite = false;*/
             }
         }
     }
