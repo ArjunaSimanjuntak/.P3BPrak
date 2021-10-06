@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">M0317057</string>
+    <string name="tv_first_fragment">Fragment 1</string>
+    <string name="tv_second_fragment">Fragment 2</string>
+</resources>
