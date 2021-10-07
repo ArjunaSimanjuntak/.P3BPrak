@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">M02-Modul</string>
+    <string name="app_name">M04</string>
+    <string name="txt_fragment1">Fragment 1</string>
+    <string name="txt_fragment2">Fragment 2</string>
+
+    <string name="btn_txt_page1">Page 2</string>
+    <string name="btn_txt_page2">Submit</string>
+
+    <string name="et_message_hint">Input message</string>
 </resources>
