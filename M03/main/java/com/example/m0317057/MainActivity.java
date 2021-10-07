@@ -1,10 +1,13 @@
 package com.example.m0317057;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.m0317057.databinding.ActivityMainBinding;
@@ -31,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         //Pakai Fragment Transaction
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(binding.fragmentContainer.getId(), this.fragment1).addToBackStack(null).commit();
-        this.changePage(2);
-        this.changePage(1);
+        this.getSupportFragmentManager().setFragmentResultListener("changePage", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                Log.d("debug", "masuk fragment listener di main Activity");
+                int page = result.getInt("page");
+                changePage(page);
+            }
+        });
 
     }
 
@@ -41,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if(page==1){
             ft.replace(binding.fragmentContainer.getId(), this.fragment1).addToBackStack(null);
         } else if(page==2){
-            ft.replace(binding.fragmentContainer2.getId(), this.fragment2).addToBackStack(null);
+            ft.replace(binding.fragmentContainer.getId(), this.fragment2).addToBackStack(null);
         }
         ft.commit();
     }

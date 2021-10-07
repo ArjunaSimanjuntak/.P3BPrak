@@ -2,4 +2,8 @@
     <string name="app_name">M0317057</string>
     <string name="tv_first_fragment">Fragment 1</string>
     <string name="tv_second_fragment">Fragment 2</string>
+    <string name="tv_message">Message</string>
+    <string name="btn_page2">Page 2</string>
+    <string name="et_input">Input message</string>
+    <string name="btn_submit">Submit</string>
 </resources>
