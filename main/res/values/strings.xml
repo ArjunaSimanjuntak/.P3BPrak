@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">M04</string>
-    <string name="txt_fragment1">Fragment 1</string>
-    <string name="txt_fragment2">Fragment 2</string>
+    <string name="app_name">T03</string>
 
-    <string name="btn_txt_page1">Page 2</string>
-    <string name="btn_txt_page2">Submit</string>
+    <string name="right_drawer_text">stringvalue right drawer</string>
+    <string name="left_drawer_text">stringvalue left drawer</string>
+    <string name="second_fragment_text">stringvalue second fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="openDrawer">Ini string untk openDrawer</string>
+    <string name="closeDrawer">Ini string untk closeDrawer</string>
 
-    <string name="et_message_hint">Input message</string>
 </resources>
