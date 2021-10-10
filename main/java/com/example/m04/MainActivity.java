@@ -124,6 +124,13 @@ public class MainActivity extends AppCompatActivity{
         }
         ft.commit();
 
+
+        // changePage dari modul belum ditulis ulang semua disini
+        
+
+
+
+
         Log.d("debug", "MAIN ACT    changePage("+page+").. end of changepage");
     }
 
