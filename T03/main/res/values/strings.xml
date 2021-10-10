@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">T0317057</string>
+    <string name="second_fragment_text">Second Fragment Text</string>
+    <string name="left_drawer_text">Left Fragment text</string>
+    <string name="right_drawer_text">Right Fragment text</string>
+    <string name="et_input">Input some text :</string>
+    <string name="btn_click">Click me</string>
+    <string name="openDrawer">Open Drawer accessed</string>
+    <string name="closedDrawer">Close Drawer accessed</string>
+</resources>

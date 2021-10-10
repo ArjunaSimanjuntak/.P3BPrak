@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--Toolbar-->
+
+        <FrameLayout
+            android:name="com.example.t0317057.MainFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container" />
+    </LinearLayout>
+
+    <!-- Left Drawer -->
+    <RelativeLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+
+        <fragment
+            android:name="com.example.t0317057.LeftFragment"
+            android:id="@+id/fragment_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+
+    </RelativeLayout>
+
+    <!-- Right Drawer -->
+
+    <RelativeLayout
+        android:id="@+id/right_drawer"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right" >
+
+        <fragment
+            android:name="com.example.t0317057.RightFragment"
+            android:id="@+id/fragment_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
