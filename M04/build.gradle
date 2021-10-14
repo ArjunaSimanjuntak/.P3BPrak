@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.m0217057"
+        applicationId "com.example.t0217057"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -35,6 +35,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     testImplementation 'junit:junit:4.+'
