@@ -1,8 +1,11 @@
 package com.example.t0317057;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private MainFragment mainFragment;
     private FragmentManager fragmentManager;
     private SecondFragment secondFragment;
+    private DrawerLayout drawerLayout;
 
 
     @Override
@@ -49,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug", "syncState");
 
         //Fragment Result API for communicating between Activity - MainFragment - SecondFragment
-        
+        this.getSupportFragmentManager().setFragmentResultListener("changePage", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                int page = result.getInt("page");
+                changePage(page);
+            }
+        });
     }
 
     public void changePage(int page){
@@ -81,5 +91,10 @@ public class MainActivity extends AppCompatActivity {
         }
         ft.commit();
         Log.d("debug", "commit changePage");
+    }
+
+    public void closeApplication(){
+        this.moveTaskToBack(true);
+        this.finish();
     }
 }

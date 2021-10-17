@@ -9,17 +9,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.t0317057.databinding.MainFragmentBinding;
 import com.example.t0317057.databinding.SecondFragmentBinding;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
     MainFragmentBinding binding;
-    public static MainFragment newInstance(String text) {
+    ResultDialogFragment dialogFragment;
+
+
+    public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
-        args.putString("text", text);
         fragment.setArguments(args);
         return fragment;
     }
@@ -31,29 +35,31 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         View view = binding.getRoot();
 
         binding.btnClick.setOnClickListener(this);
-
-        //Komunikasi antara Main Fragment dengan Rsult Dialog Fragment
-        //menggunakan Fragment Result API
-        getParentFragmentManager().setFragmentResultListener("getText", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundleText) {
-                String getText = bundleText.getString("text");
-                getText();
-            }
-        });
+//        text = binding.etText.getText().toString();
 
         return view;
     }
 
+
     @Override
     public void onClick(View view) {
-        Log.d("debug","onClick berjalan");
-        binding.etText.getText();
-        DialogFragment dialogFragment = new DialogFragment();
-        dialogFragment.show(this.getParentFragmentManager(), "dialog");
+        if(view == this.binding.btnClick){
+            String text = this.binding.etText.getText().toString();
+            this.dialogFragment = ResultDialogFragment.newInstance("");
+
+            FragmentManager fm = this.getParentFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            getText();
+            this.dialogFragment.show(ft, "dialog");
+            Log.d("debug", "muncul dialog");
+        }
     }
 
     private void getText() {
-        binding.etText.getText();
+        Bundle bundleText = new Bundle();
+        String isiText = binding.etText.getText().toString();
+        bundleText.putString("text", isiText);
+        this.getParentFragmentManager().setFragmentResult("passingText", bundleText);
+        Log.d("debug", "sudah sampai method getText");
     }
 }
