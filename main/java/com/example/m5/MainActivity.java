@@ -12,23 +12,37 @@ import android.widget.ListView;
 
 import com.example.m5.databinding.ActivityMainBinding;
 
+import java.util.Arrays;
 import java.util.List;
 
 // M5
 // ini modul 4 !!
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainPresenter.IMainActivity {
+    String TAG = "debug MainAct";
 
     private ActivityMainBinding bindingMain;
 
     private FoodListAdapter foodLAdaptr;
     private ListView lvFoods;
 
-    String TAG = "TAG";
+    private MainPresenter presenter;                                                                // ngaplikasi pake arsitektur MVP
+                                                                                                    // we use this presenter object..
+                                                                                                    // to listen the user input and update the data as well as view.
 
+    //dr mock food
+    public static String[] foodStringArr = { "Nasi Goreng Biasa", "Nasi Goreng Telor", "Nasi Goreng Ayam",
+            "Nasi Goreng Sapi", "Nasi Goreng Seafood", "Mie Goreng Biasa", "Mie Goreng Telor", "Mie Goreng Ayam",
+            "Mie Goreng Sapi", "Mie Goreng Seafood", "Baso", "Baso", "Baso", "Baso", "Baso", "Baso", "Baso", "Baso" };
 
-    // ngaplikasi pake arsitektur MVP
-    private MainPresenter presenter;
-
+    public static Food[] foodObjectArr = {
+            new Food("Nasi Goreng","pake nasi"),                         // jd tambah false krn Food pake masukan itu
+            new Food("Mie Goreng","pake mie"),
+            new Food("Makanan 1","detail makanan 1"),
+            new Food("Makanan 2","detail makanan 2"),
+            new Food("Makanan 3","detail makanan 3"),
+            new Food("Makanan 4","detail makanan 4"),
+            new Food("Makanan 5","detail makanan 5")
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.bindingMain.buttonAdd.setOnClickListener(this);
 
 
+        // mulai pake MVP architecture
+        presenter = new MainPresenter(this);                                                    // presenter object, to listen to user inputs, so it can update data / view or do other things
+
+        // load data dr mock food
+        this.presenter.loadData(foodObjectArr);                                                     // kl mau jd list,, Arrays.asList()
     }
 
     @Override
@@ -61,27 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String title = this.bindingMain.etTitle.getText().toString();
             String details = this.bindingMain.etDetails.getText().toString();
 
-            this.presenter.addList(title, details);                                                 //make presenter buat add
-
-//            Food FoodBaru = new Food(title,
-//                                    details,
-//                            false);
-
             if (!title.equals("")) {                                                                Log.d(TAG, "onClick: kalo title gakosong");
-//                this.foodLAdaptr.addLine(FoodBaru);
 
-                // kosongin
-                this.bindingMain.etTitle.getText().clear();
-                this.bindingMain.etDetails.getText().clear();
-
-                // challenge, hilangin soft keyboard nya habis itu
-                // ini sebenarnya ngapain (?)
-                // Check if no view has focus:
-                View viewCheck = this.getCurrentFocus();                                            //masukin ke view ini apa yg lg difokusin
-                if (viewCheck != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);    //perlu import input method manager dan context
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
+                this.presenter.addList(title, details);                                             //make presenter buat add
             }
         }
     }
@@ -89,12 +90,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // Override method" (abstrak) interface IMainActivity
     @Override
-    public void updateList(List<Food> foods) {
-
+    public void updateList(List<Food> foods) {                                                      Log.d(TAG, "updateList: ");
+        //
+        this.foodLAdaptr.updateList(foods);
     }
 
     @Override
-    public void resetAddForm() {
+    public void resetAddForm() {                                                                    Log.d(TAG, "resetAddForm: ");
         // kosongin
         this.bindingMain.etTitle.getText().clear();
         this.bindingMain.etDetails.getText().clear();
