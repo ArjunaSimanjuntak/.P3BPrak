@@ -78,11 +78,18 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
 
             // pastikan binding di kelas result dialog fragmentnya udah diinflate supaya bisa set                                                                                                    Log.d(TAG, "onClick: rdf.show() ....");
-            rdf.show(ft, "dialog");
+            rdf.show(ft, "dialog");     //percuma tog parameter
 
+            sendET(teks);
         }
 
                                                                                                     Log.d(TAG, "MainFrag    onClick: end of this method");
 
+    }
+
+    public void sendET(String siEt) {
+        Bundle bundleText = new Bundle();
+        bundleText.putString("ETinput", siEt);
+        getParentFragmentManager().setFragmentResult("et_RKey", bundleText);
     }
 }

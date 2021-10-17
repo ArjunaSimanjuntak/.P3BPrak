@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.t03.databinding.FragmentMainBinding;
@@ -43,8 +44,26 @@ public class ResultDialogFragment extends DialogFragment {
         View view = this.bindingFResultDialog.getRoot();                                            // pake layout yg uda disediakan
 
 
-                                                                                                    Log.d(TAG, "resultdialogfragment    onCreateView: end of resultdfragment");
+        // listen to incoming edit text, with fragment API
+        getParentFragmentManager().setFragmentResultListener("et_RKey", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {      Log.d(TAG, "onFragmentResult: ");
+                // We use a String here, but any type that can be put in a Bundle is supported
+                String theET = bundle.getString("ETinput");
+
+                if (!theET.equals("")) {                                                            // kl ada isinya
+                    // Do something with the result
+                    bindingFResultDialog.tvResult.setText("Your input: "  + theET);
+                }
+            }
+        });
+
+        Log.d(TAG, "resultdialogfragment    onCreateView: end of resultdfragment");
         return view;
+    }
+
+    public void listenforEt () {
+        //
     }
 
     // GAPERLU DI
@@ -66,8 +85,5 @@ public class ResultDialogFragment extends DialogFragment {
 //        return super.show(transaction, tag);
 //    }
 
-    @Override
-    public void onResume() {        // knp tetap
-        super.onResume();
-    }
+
 }
