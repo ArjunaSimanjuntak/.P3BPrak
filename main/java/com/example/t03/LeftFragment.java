@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 import com.example.t03.databinding.FragmentLeftBinding;
 import com.example.t03.databinding.FragmentRightBinding;
 
+// left drawer
 public class LeftFragment extends Fragment {
+    String TAG = "debug LeftFrag";
     FragmentLeftBinding bindingFLeft;
 
     @Nullable

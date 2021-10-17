@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.t03.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
+    String TAG = "debug SecondFrag";
     FragmentSecondBinding bindingFSecond;
 
     public static SecondFragment newInstance() {

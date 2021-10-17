@@ -18,7 +18,8 @@ import com.example.t03.databinding.FragmentResultDialogBinding;
 
 public class ResultDialogFragment extends DialogFragment {
     FragmentResultDialogBinding bindingFResultDialog;
-    String TAG = "debug";
+    String TAG = "debug RDFrag";
+
 
     public static ResultDialogFragment newInstance(String teksnya) {
                                                                                                     Log.d("debug", "ResDialgFrag newInstance: ");
@@ -46,24 +47,24 @@ public class ResultDialogFragment extends DialogFragment {
         return view;
     }
 
+    // GAPERLU DI
     // method dr dialog fragment
-    @Override
-    public int show(@NonNull FragmentTransaction transaction, @Nullable String tag) {
-                                                                                                    Log.d(TAG, "ResultDialogFragment    show: ");
-//        Bundle args = this.getArguments();
-//        this.bindingFResultDialog.tvResult.setText(args.getString("teks", ""));
-        // error krn belum dibuat dulu binding nya
-
-
-
-                                                                                                    Log.d(TAG, "show: setText()!!");
-        this.bindingFResultDialog.tvResult.setText(tag);                                            // java.lang.NullPointerException: Attempt to read from field 'android.widget.TextView com.example.t03.databinding.FragmentResultDialogBinding.tvResult' on a null object reference
-                                                                                                    //at com.example.t03.ResultDialogFragment.show(ResultDialogFragment.java:59)
-
-
-                                                                                                    Log.d(TAG, "ResultDialogFragment    show: end of show");
-        return super.show(transaction, tag);
-    }
+//    @Override
+//    public int show(@NonNull FragmentTransaction transaction, @Nullable String tag) {
+//                                                                                                    Log.d(TAG, "ResultDialogFragment    show: ");
+////        Bundle args = this.getArguments();
+////        this.bindingFResultDialog.tvResult.setText(args.getString("teks", ""));
+//        // error krn belum dibuat dulu binding nya
+//
+//                                                                                                    Log.d(TAG, "show: setText()!!");
+//        this.bindingFResultDialog.tvResult.setText(tag);                                            // java.lang.NullPointerException: Attempt to read from field 'android.widget.TextView com.example.t03.databinding.FragmentResultDialogBinding.tvResult' on a null object reference
+//                                                                                                    //at com.example.t03.ResultDialogFragment.show(ResultDialogFragment.java:59)
+//
+//        // pasang tv cara lama, gabisa
+//        //this.tv = findViewById
+//                                                                                   Log.d(TAG, "ResultDialogFragment    show: end of show");
+//        return super.show(transaction, tag);
+//    }
 
     @Override
     public void onResume() {        // knp tetap

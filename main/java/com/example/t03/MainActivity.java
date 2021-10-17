@@ -10,8 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.t03.databinding.ActivityMainBinding;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding bindingMain;
@@ -21,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
     LeftFragment fragmentLeft;
     MainFragment fragmentMain;
     Toolbar toolbar;
+    ResultDialogFragment rdf;
 
     FragmentManager fm;                                                                             //mending jd atribut?
 
     // untk debug
-    String TAG = "debug";
+    String TAG = "debug MainAct";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.fm = this.getSupportFragmentManager();
 
+        //TextView tv = findViewById(R.id.tvResult);
+
         FragmentTransaction ft = this.fm.beginTransaction();
 
         ft.add(this.bindingMain.fragmentContainer.getId(), this.fragmentMain)
@@ -63,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer);
         drawer.addDrawerListener(abdt);
         abdt.syncState();
+
+
+        //
 
                                                                                                     Log.d(TAG, "onCreate:   end of oncreate");
     }

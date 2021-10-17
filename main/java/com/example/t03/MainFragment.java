@@ -21,7 +21,9 @@ import com.example.t03.databinding.FragmentMainBinding;
  */
 public class MainFragment extends Fragment implements View.OnClickListener{
     FragmentMainBinding bindingFMain;
-    String TAG = "debug";
+    String TAG = "debug MainFrag";
+
+    ResultDialogFragment rdf;
 
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
@@ -51,6 +53,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
 
         this.bindingFMain.buttMainfrag.setOnClickListener(this);                                    // set buat pas ditekan ke onclick
 
+
         return view;
     }
 
@@ -62,11 +65,16 @@ public class MainFragment extends Fragment implements View.OnClickListener{
             String teks = this.bindingFMain.etMainfrag.getText().toString();
 
 
+
                                                                                                     Log.d(TAG, "onClick: buat objek Res Dialg Frag, rdf");
                                                                                                     // buat objek dialog n pake newinstance/factory method supaya ngasih string dr edit text yg baru dapat
-            ResultDialogFragment rdf = ResultDialogFragment.newInstance(teks);                      Log.d(TAG, "onClick: buat frag manager");
+            this.rdf = ResultDialogFragment.newInstance("");                                        // awal"diisi teks kosong
+
+
+            Log.d(TAG, "onClick: buat frag manager");
             FragmentManager fm = this.getParentFragmentManager();                                   Log.d(TAG, "onClick: buat frag transaction");
             FragmentTransaction ft = fm.beginTransaction();                                         // hrs gini dulu?
+
 
 
             // pastikan binding di kelas result dialog fragmentnya udah diinflate supaya bisa set                                                                                                    Log.d(TAG, "onClick: rdf.show() ....");
