@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ukuran_judul_app">40sp</dimen>
+    <dimen name="ukuran_judul_list">35sp</dimen>
+    <dimen name="marginEnd_separator">20sp</dimen>
+    <dimen name="marginStart_separator">20sp</dimen>
+    <dimen name="marginStart_judul">20sp</dimen>
+    <dimen name="padding_list">10px</dimen>
+</resources>
