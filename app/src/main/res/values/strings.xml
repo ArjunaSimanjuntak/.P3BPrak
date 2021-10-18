@@ -5,4 +5,8 @@
     <string name="version">Version 1.0</string>
     <string name="btn_start">Start</string>
     <string name="judul_list">Film Lists</string>
+    <string name="judul_add">Add Movie/Series</string>
+    <string name="tv_name">Name</string>
+    <string name="tv_sinopsis">Synopsis</string>
+    <string name="tv_poster">Add Poster</string>
 </resources>
