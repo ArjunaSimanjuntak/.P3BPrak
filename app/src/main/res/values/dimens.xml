@@ -5,4 +5,9 @@
     <dimen name="marginEnd_separator">20sp</dimen>
     <dimen name="marginStart_separator">20sp</dimen>
     <dimen name="padding_list">10px</dimen>
+
+    <dimen name="marginStart_judul">14.5sp</dimen>
+
+<!--    ke item-->
+<!--    <item name="marginStart_judul" type="dimen" format="float">14.5sp</item>-->
 </resources>

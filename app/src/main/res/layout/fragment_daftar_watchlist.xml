@@ -10,9 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/judul_list"
         android:textSize="@dimen/ukuran_judul_list"
-        android:layout_marginStart="@dimen/marginStart_judul">
-
-    </TextView>
+        android:layout_marginStart="@dimen/marginStart_judul" />
 
     <View
         android:layout_width="match_parent"
@@ -21,6 +19,8 @@
         android:layout_marginStart="@dimen/marginStart_separator"
         android:layout_marginEnd="@dimen/marginEnd_separator">
     </View>
+<!--    kenapa <View > </View> ?
+        knp gak <View /> ?-->
 
     <ListView
         android:layout_width="match_parent"
