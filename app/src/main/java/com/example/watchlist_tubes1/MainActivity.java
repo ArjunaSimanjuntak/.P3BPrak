@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        
+
         // fragment manager..
                                                                                                     // awal onCreate ini, add ke stack si landing Page, tp di awal oncreate aja, karna cuman landing page
     }
