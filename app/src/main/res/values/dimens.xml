@@ -7,7 +7,8 @@
     <dimen name="padding_list">10px</dimen>
 
     <dimen name="marginStart_judul">10sp</dimen>
+    <dimen name="margin_fab">16dp</dimen>
 
-<!--    ke item-->
+    <!--    ke item-->
 <!--    <item name="marginStart_judul" type="dimen" format="float">14.5sp</item>-->
 </resources>
