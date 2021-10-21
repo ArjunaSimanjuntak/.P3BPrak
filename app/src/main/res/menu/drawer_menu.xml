@@ -13,6 +13,8 @@ https://developer.android.com/guide/navigation/navigation-ui#java-->
             android:title="Landing Page" />
         <item android:id="@+id/nav_filmlists"
             android:title="Your (watch) lists" />
+        <item android:id="@+id/nav_somepage"
+            android:title="Go to some page!" />
 
     </group>
 
