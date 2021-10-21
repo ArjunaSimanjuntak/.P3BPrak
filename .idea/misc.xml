@@ -3,19 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/D/kul/kuliah(D)/.s9/Pemrograman pada Perangkat Bergerak 3sks/.projects/.gitTubes1/app/src/main/res/layout/activity_main.xml" value="0.12239583333333333" />
-        <entry key="..\:/D/kul/kuliah(D)/.s9/Pemrograman pada Perangkat Bergerak 3sks/.projects/.gitTubes1/app/src/main/res/layout/fragment_daftar_watchlist.xml" value="0.12239583333333333" />
-        <entry key="..\:/D/kul/kuliah(D)/.s9/Pemrograman pada Perangkat Bergerak 3sks/.projects/.gitTubes1/app/src/main/res/layout/fragment_home.xml" value="0.12239583333333333" />
-        <entry key="..\:/D/kul/kuliah(D)/.s9/Pemrograman pada Perangkat Bergerak 3sks/.projects/.gitTubes1/app/src/main/res/layout/item_list_watchlist.xml" value="0.12239583333333333" />
-=======
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/drawable/custom_input.xml" value="0.2203125" />
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/layout/fragment_add_film.xml" value="0.33" />
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/layout/fragment_daftar_watchlist.xml" value="0.20416666666666666" />
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/layout/item_list_watchlist.xml" value="0.25" />
->>>>>>> 70948c97164102a668f5a443ea0b21da36e5a8f9
+        <entry key="..\:/PARAHYANGAN/SEMESTER 9/PEMROGRAMAN PADA PERANGKAT BERGERAK/GITHUB WILLY/PRAK 2/.P3BPrak/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
