@@ -21,6 +21,7 @@
     </View>
 <!--    kenapa <View > </View> ?
         knp gak <View /> ?-->
+    <!--Jawab : sama aja bosku wkwk-->
 
     <ListView
         android:layout_width="match_parent"
