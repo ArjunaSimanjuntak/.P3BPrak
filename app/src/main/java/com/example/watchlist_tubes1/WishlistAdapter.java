@@ -79,6 +79,7 @@ public class WishlistAdapter extends BaseAdapter {
             this.itemListWatchlistBinding = itemListWatchlistBinding;
 
             itemListWatchlistBinding.btnCheckbox.setOnClickListener(this);
+            itemListWatchlistBinding.tvListJudul.setOnClickListener(this);
         }
 
         public void updateView(Movie currentMovie){
@@ -89,7 +90,7 @@ public class WishlistAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
-
+            //checkbox dan tv_list_judul jika di click
         }
     }
 }
