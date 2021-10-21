@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String TAG = "debug MainAct";
     private ActivityMainBinding bindingMain;
     private DrawerLayout drawer;
+    private HomeFragment homeFragment;
+    private WishlistFragment wishlistFragment;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         // fragment manager..
-                                                                                                    // awal onCreate ini, add ke stack si landing Page, tp di awal oncreate aja, karna cuman landing page
+        this.homeFragment = new HomeFragment();                                                     // awal onCreate ini, add ke stack si landing Page, tp di awal oncreate aja, karna cuman landing page
+        this.wishlistFragment = new WishlistFragment();
+        this.fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction ft = this.fragmentManager.beginTransaction();
+        ft.add(bindingMain.fragmentContainer.getId(), this.homeFragment)
+                .addToBackStack(null).commit();
+
+        //Fragment Result API changePage()
+        this.getSupportFragmentManager().setFragmentResultListener("changePage", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                int page = result.getInt("page");
+                changePage(page);
+            }
+        });
     }
 
     @Override
@@ -84,5 +104,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void closeApplication () {
         this.moveTaskToBack(true);
         this.finish();
+    }
+
+    public void changePage(int page){
+        Log.d("debug", "masuk method changePage");
+        FragmentTransaction ft = this.fragmentManager.beginTransaction();
+        if(page==1){
+            Log.d("debug", "Masuk page 1");
+            //Menggunakan show and hide
+            if(this.homeFragment.isAdded()){
+                ft.show(this.homeFragment);
+            }
+            else{
+                ft.add(bindingMain.fragmentContainer.getId(), this.homeFragment);
+            }
+            if(this.wishlistFragment.isAdded()){
+                ft.hide(this.wishlistFragment);
+            }
+
+        } else if(page==2){
+            Log.d("debug", "masuk ke dalam page2");
+            //Menggunakan methode show and hide
+            if(this.wishlistFragment.isAdded()){
+                ft.show(this.wishlistFragment);
+            }
+            else{
+                ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment).addToBackStack(null);
+            }
+            if(this.homeFragment.isAdded()){
+                ft.hide(this.homeFragment);
+            }
+        } else if(page==3){
+            Log.d("debug", "ke click");
+            closeApplication();
+            Log.d("debug", "harusnya ke tutup");
+        }
+        ft.commit();
+        Log.d("debug", "commit changePage");
     }
 }
