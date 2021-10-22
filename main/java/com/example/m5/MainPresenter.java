@@ -15,23 +15,32 @@ public class MainPresenter {
 
 
     // constructor
-    public MainPresenter (IMainActivity ui) {
+    public MainPresenter (IMainActivity ui) {                                                       // or the 'View' as this parameter
         this.ui = ui;
         this.foods = new ArrayList<Food>();
     }
 
 
+
     public void loadData (Food[] arrFood) {                                                        // ambil data yg sdh dimasukkan dr MockFood
                                                                                                     Log.d(TAG, "masuk loadData");
-        for (Food food : arrFood) {
+        if (this.foods.isEmpty()) {
+            for (Food food : arrFood) {
                                                                                                     Log.d(TAG, "loadData: , food.gettitle(): "+ food.getTitle() + ", .getdetail(): " + food.getDetails());
-            this.foods.add(food);
+                this.foods.add(food);
+            }
         }
+
+        this.ui.updateList(foods);
     }
 
     public void deleteList (int position) {                                                         //hapus makanan dr struktur data sesuai dgn posisi yg dimasukkan
-        this.foods.remove(position);
-//        notifyDataSetChanged();
+        Food theFood = this.foods.get(position);
+        this.foods.remove(theFood);
+//        this.foods.remove(position);
+
+        this.ui.updateList(foods);                                                                  // waktu dipanggil dari main act, ini jadi ke main act bukan update di kelas adapter seharusnya
+        this.ui.resetAddForm();
     }
 
     //khusus addList, panggil resetAddForm juga
@@ -40,15 +49,20 @@ public class MainPresenter {
         Food newFood = new Food(title, detail);
         this.foods.add(newFood);
 
-        this.ui.updateList(foods);
+        this.ui.updateList(foods);                                                                  // waktu dipanggil dari main act, ini jadi ke main act bukan update di kelas adapter seharusnya
         this.ui.resetAddForm();                                                                     // pake si interface yg baru dibuat
-        // biar masuk getView?
 
     }
 
     public void toggleFav (int position) {                                                          //toggle favorite
-                                                                                                    //this.foods.get() kembaliin food
-        if (this.foods.get(position).isFavorite()) {
+//        Food theFood = this.foods.get(position);                                                    //this.foods.get() kembaliin food
+
+//        if ( this.foods. ) {                                                // pake get (objek)
+//            this.foods.get(position).setFavorite(false);
+//        }else {this.foods.get(position).setFavorite(true);}
+
+
+        if (this.foods.get(position).isFavorite()) {                                              // pake get (integer)
             this.foods.get(position).setFavorite(false);
         }else {this.foods.get(position).setFavorite(true);}
     }

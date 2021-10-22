@@ -72,35 +72,77 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.presenter.loadData(foodObjectArr);                                                     // kl mau jd list,, Arrays.asList()
     }
 
+
     @Override
     public void onClick(View view) {
-                                                                                                    Log.d(TAG, "onClick: ");
-        if (view == this.bindingMain.buttonAdd) {
-                                                                                                    Log.d(TAG, "onClick: kl view = buttonAdd");
+        Log.d(TAG, "masuk onClick");
+
+        // kalo tekan add...
+        if (view == this.bindingMain.buttonAdd) {                                                   Log.d(TAG, "onclick, button add");
+
             String title = this.bindingMain.etTitle.getText().toString();
             String details = this.bindingMain.etDetails.getText().toString();
 
-            if (!title.equals("")) {                                                                Log.d(TAG, "onClick: kalo title gakosong");
 
-                this.presenter.addList(title, details);                                             //make presenter buat add
+                                                                                                    Log.d(TAG, "title, detail: " + title + ", " + details);
+
+            Food foodBaru = new Food(this.bindingMain.etTitle.getText().toString()
+                    , this.bindingMain.etDetails.getText().toString());
+
+            if (!title.equals("")) {                                                                Log.d(TAG, "addLine foodBaru");
+//                this.foodLAdaptr.addLine(foodBaru);
+
+                // pake presenter MVP
+                this.presenter.addList(title, details);
+
+
+                this.bindingMain.etTitle.getText().clear();
+                this.bindingMain.etDetails.getText().clear();
+
+
+
+                View viewCheck = this.getCurrentFocus();                                            //masukin ke view ini apa yg lg difokusin
+                if (viewCheck != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);    //perlu import input method manager dan context
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
             }
+
+
         }
     }
+//    @Override
+//    public void onClick(View view) {
+//                                                                                                    Log.d(TAG, "onClick: ");
+//        if (view == this.bindingMain.buttonAdd) {
+//                                                                                                    Log.d(TAG, "onClick: kl view = buttonAdd");
+//            String title = this.bindingMain.etTitle.getText().toString();
+//            String details = this.bindingMain.etDetails.getText().toString();
+//
+//            if (!title.equals("")) {                                                                Log.d(TAG, "onClick: kalo title gakosong");
+//
+//                this.presenter.addList(title, details);                                             //make presenter buat add
+//            }
+//        }
+//    }
 
 
     // Override method" (abstrak) interface IMainActivity
     @Override
     public void updateList(List<Food> foods) {                                                      Log.d(TAG, "updateList: ");
         //
-        this.foodLAdaptr.updateList(foods);
+        this.foodLAdaptr.updateList(foods);                                                         // baru dari sini dioper lagi ke kelas adapter, dimana seharusnya diupdate
     }
 
     @Override
     public void resetAddForm() {                                                                    Log.d(TAG, "resetAddForm: ");
         // kosongin
+//        this.foodLAdaptr.resetAddForm();
+
         this.bindingMain.etTitle.getText().clear();
         this.bindingMain.etDetails.getText().clear();
 
         this.bindingMain.etTitle.onEditorAction(EditorInfo.IME_ACTION_DONE);                        //krn gabisa ada view
     }
+
 }
