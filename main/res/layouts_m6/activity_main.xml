@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_barang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_barang_string" />
+
+    <EditText
+        android:id="@+id/et_barang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="isi barang.."/>
+
+    <TextView
+        android:id="@+id/tv_harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_harga_string" />
+
+    <EditText
+        android:id="@+id/et_harga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="isi harga.."
+        android:inputType="numberSigned"/>
+
+    <TextView
+        android:id="@+id/tv_keterangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_ktrngn_string" />
+
+    <EditText
+        android:id="@+id/et_keterangan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="isi keterangan.."/>
+
+    <Button
+        android:id="@+id/butt_id"
+        android:text="@string/button_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
