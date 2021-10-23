@@ -50,12 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = bindingMain.navView;                                        // ambil navview supaya item" di menu dalem nav view bisa dipake
         navigationView.setNavigationItemSelectedListener(this);                                     // jd implement onnavigation blabla
 
-        this.addFilmFragment = new AddFilmFragment();
-
 
         // fragment manager..
         this.homeFragment = new HomeFragment();                                                     // awal onCreate ini, add ke stack si landing Page, tp di awal oncreate aja, karna cuman landing page
         this.wishlistFragment = new WishlistFragment();
+        this.addFilmFragment = new AddFilmFragment();
         this.fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(bindingMain.fragmentContainer.getId(), this.homeFragment)
@@ -130,28 +129,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.show(this.wishlistFragment);
             }
             else{
-                ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment);
+                ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment).addToBackStack(null);
             }
             if(this.homeFragment.isAdded()){
                 ft.hide(this.homeFragment);
             }
+            if(this.addFilmFragment.isAdded()){
+                ft.hide(this.addFilmFragment);
+            }
         } else if(page==3){
-            Log.d("debug", "masuk ke page add");
+            Log.d("debug", "masuk ke dalam page2");
+            //Menggunakan methode show and hide
             if(this.addFilmFragment.isAdded()){
                 ft.show(this.addFilmFragment);
-            } else{
+            }
+            else{
                 ft.add(bindingMain.fragmentContainer.getId(), this.addFilmFragment).addToBackStack(null);
             }
-            if(this.addFilmFragment.isAdded()){
-                Log.d("debug", "wishliastFragment ke hide");
+            if(this.wishlistFragment.isAdded()) {
                 ft.hide(this.wishlistFragment);
             }
 
-        } else if(page==4){
+        } /*else if(page==4){
             Log.d("debug", "ke click");
             closeApplication();
             Log.d("debug", "harusnya ke tutup");
-        }
+        }*/
         ft.commit();
         Log.d("debug", "commit changePage");
     }

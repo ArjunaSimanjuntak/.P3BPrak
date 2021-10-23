@@ -40,6 +40,9 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        Bundle result = new Bundle();
+        result.putInt("page", 2);
+        this.getParentFragmentManager()
+                .setFragmentResult("changePage", result);
     }
 }
