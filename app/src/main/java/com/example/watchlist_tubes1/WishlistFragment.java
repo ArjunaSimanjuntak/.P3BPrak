@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.watchlist_tubes1.databinding.FragmentDaftarWatchlistBinding;
 
-public class WishlistFragment extends Fragment {
+public class WishlistFragment extends Fragment implements View.OnClickListener {
     FragmentDaftarWatchlistBinding binding;
     private ListView listView;
     private WishlistAdapter adapter;
@@ -36,6 +36,16 @@ public class WishlistFragment extends Fragment {
         this.adapter = new WishlistAdapter(this);
         this.listView.setAdapter(this.adapter);
 
+        binding.btnAddFab.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Bundle result = new Bundle();
+        result.putInt("page", 3);
+        this.getParentFragmentManager()
+                .setFragmentResult("changePage", result);
     }
 }

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private HomeFragment homeFragment;
     private WishlistFragment wishlistFragment;
+    private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
 
     @Override
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = bindingMain.navView;                                        // ambil navview supaya item" di menu dalem nav view bisa dipake
         navigationView.setNavigationItemSelectedListener(this);                                     // jd implement onnavigation blabla
 
-
+        this.addFilmFragment = new AddFilmFragment();
 
 
         // fragment manager..
@@ -129,12 +130,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.show(this.wishlistFragment);
             }
             else{
-                ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment).addToBackStack(null);
+                ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment);
             }
             if(this.homeFragment.isAdded()){
                 ft.hide(this.homeFragment);
             }
         } else if(page==3){
+            Log.d("debug", "masuk ke page add");
+            if(this.addFilmFragment.isAdded()){
+                ft.show(this.addFilmFragment);
+            } else{
+                ft.add(bindingMain.fragmentContainer.getId(), this.addFilmFragment).addToBackStack(null);
+            }
+            if(this.addFilmFragment.isAdded()){
+                Log.d("debug", "wishliastFragment ke hide");
+                ft.hide(this.wishlistFragment);
+            }
+
+        } else if(page==4){
             Log.d("debug", "ke click");
             closeApplication();
             Log.d("debug", "harusnya ke tutup");
