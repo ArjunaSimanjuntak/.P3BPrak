@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +41,28 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+        ///////tes nambah ke database
+        // udah pasti add ditekan karna cuman satu button yg listen
+        Movie newMovie = null;
+        try {                                                                                       // manatau error (?)
+            newMovie = new Movie(binding.etTitle.toString(), binding.etSynopsis.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        DatabaseHelper dbHelper = new DatabaseHelper(this.getActivity());                           // gabisa pake this, butuh context. jd bisa FragmentActivity (?)
+
+        boolean success = dbHelper.addMovie(newMovie);
+
+        if (success) {
+            Toast.makeText(this.getActivity(), "Movie Added!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this.getActivity(), "something went wrong", Toast.LENGTH_SHORT).show();
+        }
+
+        //////
+
         Bundle result = new Bundle();
         result.putInt("page", 2);
         this.getParentFragmentManager()

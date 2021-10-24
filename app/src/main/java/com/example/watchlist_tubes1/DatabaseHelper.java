@@ -61,8 +61,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // ngasal
-    public boolean addMovie (Movie theMovie) {
+    public boolean addMovie (Movie theMovie) {                                                      Log.d(TAG, "addMovie: ");
         boolean apaBisa = true;
+
+        if (theMovie == null) {
+            Log.d(TAG, "addMovie: movie masukan belum diisi. null");
+            return false;
+        }
 
         // query....
         SQLiteDatabase db = this.getWritableDatabase();                                             // writable karna mau nambah
