@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         ///
-        moviePresenter = new MoviePresenter(this);
-        moviePresenter.loadData(movieObjectArr);                                                    // kirim array movies dummy ke presenter
+        moviePresenter = new MoviePresenter(this);         // kirim array movies dummy ke presenter
 
 
 
@@ -192,11 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.hide(this.wishlistFragment);
             }
 
-        } /*else if(page==4){
-            Log.d("debug", "ke click");
-            closeApplication();
-            Log.d("debug", "harusnya ke tutup");
-        }*/
+        }
         ft.commit();
         Log.d("debug", "commit changePage");
     }
@@ -206,6 +201,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void updateListMovie(List<Movie> movieLists) {
         // lempar ke adapter
-
+        this.wishlistAdapter.updateListMovie(movieLists);
     }
 }
