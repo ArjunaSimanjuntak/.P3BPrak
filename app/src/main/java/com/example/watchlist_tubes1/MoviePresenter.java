@@ -19,7 +19,7 @@ public class MoviePresenter {
         //
         if (this.movies.isEmpty()) {
             for (Movie movie : arrMovie) {
-                                                                                                    Log.d(TAG, "loadData: , food.gettitle(): "+ movie.getTitle() + ", .getdetail(): " + movie.getSynopsis());
+                                                                                                    Log.d(TAG, "loadData: , movie.gettitle(): "+ movie.getTitle() + ", .getSynopsis(): " + movie.getSynopsis());
                 this.movies.add(movie);
             }
         }

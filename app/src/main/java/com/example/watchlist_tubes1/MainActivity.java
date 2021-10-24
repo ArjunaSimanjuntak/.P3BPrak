@@ -88,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+
+
+
+
+        // (?)
+        // Permission                                                                               (cukup SEKALI)
+//        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//        this.requestPerm
+
     }
 
     @Override

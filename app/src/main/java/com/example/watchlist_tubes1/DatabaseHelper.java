@@ -80,6 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_STATUS, theMovie.getStatus());
         cv.put(COLUMN_STAR, theMovie.getStar());
 
+                                                                                                    Log.d(TAG, "addMovie: the movie: " + theMovie.toString());
                                                                                                     // insert.
         long result = db.insert(TABLE_NAME,null, cv);                                  // result + kl berhasil, - gagal
 
