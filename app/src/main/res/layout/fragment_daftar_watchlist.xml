@@ -25,20 +25,23 @@
         knp gak <View /> ?-->
     <!--Jawab : sama aja bosku wkwk-->
 
-    <ListView
-        android:id="@+id/list_Movie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|end">
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/list_Movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+
+        </ListView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_add_fab"
+            android:layout_gravity="bottom|end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_margin="@dimen/margin_fab"
             android:contentDescription="@string/add"
             android:src="@drawable/ic_android_custom_add"/>
