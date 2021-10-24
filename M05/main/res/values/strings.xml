@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">M0517057</string>
+    <string name="tv_barang">Barang</string>
+    <string name="tv_harga">Harga</string>
+    <string name="tv_keterangan">Keterangan</string>
+    <string name="btn_add">Add</string>
+</resources>
