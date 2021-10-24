@@ -14,11 +14,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.example.watchlist_tubes1.databinding.ActivityMainBinding;
+import com.example.watchlist_tubes1.databinding.FragmentDaftarWatchlistBinding;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , MoviePresenter.IMoviePresenter{
     String TAG = "debug MainAct";
     private ActivityMainBinding bindingMain;
     private DrawerLayout drawer;
@@ -26,6 +30,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private WishlistFragment wishlistFragment;
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
+
+    private WishlistAdapter wishlistAdapter;
+    private ListView listViewMovies;
+    private FragmentDaftarWatchlistBinding bindingWatchlistFrag;
+
+    private MoviePresenter moviePresenter;
+
+
+    public static Movie[] movieObjectArr = {
+            new Movie("WatchMen", "synopsis"),                                          //"status TRUE", "ini review watchmen", 5),
+            new Movie("Fargo", "synopsis something something"),
+            new Movie("Venom", "synopsis tentang venom "),
+            new Movie("Game Of Thrones", "Sinopsis tentang GOT"),
+            new Movie("Taxi Driver", "taxitaxitaxi")
+    };
+                                                                                                    //            new Movie("Fargo", "synopsis something something ", "status FALSE", "", 0),
+                                                                                                    //            new Movie("Venom", "synopsis tentang venom ", "status FALSE", "", 0),
+                                                                                                    //            new Movie("Game Of Thrones", "Sinopsis tentang GOT", "status FALSE", "", 0)
+                                                                                                    //            new Movie("Taxi Driver", "taxitaxitaxi", "status FALSE", "", 0)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.bindingMain = ActivityMainBinding.inflate(this.getLayoutInflater());                       // binding
         View layout = bindingMain.getRoot();
         setContentView(layout);
+
+
+        ///
+        moviePresenter = new MoviePresenter(this);
+        moviePresenter.loadData(movieObjectArr);                                                    // kirim array movies dummy ke presenter
+
 
 
         Toolbar toolbar = bindingMain.toolbar;                                                          // modul Praktikum_03 v2    & https://youtu.be/zYVEMCiDcmY
@@ -68,6 +97,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 changePage(page);
             }
         });
+
+
+
+
+        // instate binding lg
+        bindingWatchlistFrag = FragmentDaftarWatchlistBinding.inflate(this.getLayoutInflater());
+                                                                                                    // pasang list view dgn adapter
+        this.listViewMovies = bindingWatchlistFrag.listMovie;
+        this.wishlistAdapter = new WishlistAdapter(wishlistFragment );
+        this.listViewMovies.setAdapter(wishlistAdapter);
+
+        moviePresenter.loadData(movieObjectArr);                                                    // load kl masi kosong dgn dummy
+
     }
 
     @Override
@@ -157,5 +199,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }*/
         ft.commit();
         Log.d("debug", "commit changePage");
+    }
+
+
+    // nge implement interface dr movie presenter
+    @Override
+    public void updateListMovie(List<Movie> movieLists) {
+        // lempar ke adapter
+
     }
 }

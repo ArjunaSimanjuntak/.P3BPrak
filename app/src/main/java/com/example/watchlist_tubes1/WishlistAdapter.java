@@ -13,7 +13,7 @@ import com.example.watchlist_tubes1.databinding.ItemListWatchlistBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WishlistAdapter extends BaseAdapter {
+public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMoviePresenter{
     private List<Movie> listMovie;
     private Fragment fragment;
 
@@ -69,6 +69,14 @@ public class WishlistAdapter extends BaseAdapter {
 
         return view;
     }
+
+
+
+    @Override
+    public void updateListMovie(List<Movie> movieLists) {
+        this.listMovie = movieLists;
+    }
+
 
     private class ViewHolder implements View.OnClickListener {
         ItemListWatchlistBinding itemListWatchlistBinding;
