@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="@dimen/padding_list">
+    android:padding="10dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="judul"
         android:layout_weight="1"
-        android:id="@+id/tv_list_judul">
+        android:id="@+id/tv_list_judul"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        >
 
     </TextView>
 
