@@ -39,9 +39,9 @@ public class Movie {
         return review;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
-    }
+    }                                                                                               // kynya mending getStatus
 
     public int getStar() {
         return star;
