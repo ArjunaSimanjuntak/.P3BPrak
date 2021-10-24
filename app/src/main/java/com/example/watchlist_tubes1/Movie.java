@@ -1,5 +1,7 @@
 package com.example.watchlist_tubes1;
 
+import androidx.annotation.NonNull;
+
 public class Movie {
     protected String title, synopsis, review;
     protected boolean status;
@@ -11,6 +13,18 @@ public class Movie {
         this.review = "";
         this.status = false;
         this.star= 0;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {                                                                      // ngembaliin semua, dlm string
+        return "MovieModel{" +
+                "title=" + title +
+                ", synopsis=" + synopsis +
+                ", review=" + review +
+                ", status=" + status +
+                ", star=" + star +
+                '}';                                                                                // "}"
     }
 
     public String getTitle() {
