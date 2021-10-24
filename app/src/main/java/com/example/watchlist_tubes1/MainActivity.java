@@ -22,7 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , MoviePresenter.IMoviePresenter{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     String TAG = "debug MainAct";
     private ActivityMainBinding bindingMain;
     private DrawerLayout drawer;
@@ -31,11 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
 
-    private WishlistAdapter wishlistAdapter;
-    private ListView listViewMovies;
-    private FragmentDaftarWatchlistBinding bindingWatchlistFrag;
-
-    private MoviePresenter moviePresenter;
 
 
     public static Movie[] movieObjectArr = {
@@ -58,10 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.bindingMain = ActivityMainBinding.inflate(this.getLayoutInflater());                       // binding
         View layout = bindingMain.getRoot();
         setContentView(layout);
-
-
-        ///
-        moviePresenter = new MoviePresenter(this);         // kirim array movies dummy ke presenter
 
 
 
@@ -96,18 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 changePage(page);
             }
         });
-
-
-
-
-        // instate binding lg
-        bindingWatchlistFrag = FragmentDaftarWatchlistBinding.inflate(this.getLayoutInflater());
-                                                                                                    // pasang list view dgn adapter
-        this.listViewMovies = bindingWatchlistFrag.listMovie;
-        this.wishlistAdapter = new WishlistAdapter(wishlistFragment );
-        this.listViewMovies.setAdapter(wishlistAdapter);
-
-        moviePresenter.loadData(movieObjectArr);                                                    // load kl masi kosong dgn dummy
 
     }
 
@@ -197,10 +176,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    // nge implement interface dr movie presenter
-    @Override
-    public void updateListMovie(List<Movie> movieLists) {
-        // lempar ke adapter
-        this.wishlistAdapter.updateListMovie(movieLists);
-    }
 }
