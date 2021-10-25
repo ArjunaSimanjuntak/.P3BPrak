@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private static final int WRITE_REQUEST_CODE = 1;
     String TAG = "debug MainAct";
     private ActivityMainBinding bindingMain;
     private DrawerLayout drawer;
@@ -186,4 +188,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
+
+    // untk permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case WRITE_REQUEST_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Granted
+                    Log.d("REQPERM", "Granted");
+                } else {                                                                            // masih denied
+                    // Denied
+                    Log.d("REQPERM", "Denied");
+                }
+                break;
+        }
+
+
+    }
 }
