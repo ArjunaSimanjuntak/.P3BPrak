@@ -1,6 +1,7 @@
 package com.example.watchlist_tubes1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +11,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                                                                                     //            new Movie("Game Of Thrones", "Sinopsis tentang GOT", "status FALSE", "", 0)
                                                                                                     //            new Movie("Taxi Driver", "taxitaxitaxi", "status FALSE", "", 0)
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // (?)
         // Permission                                                                               (cukup SEKALI)
-//        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-//        this.requestPerm
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};                        // dan override onrequest permission result.. dan import package manager nya lagi                                                     // dan override onrequest permission result.. dan import package manager nya lagi
+        this.requestPermissions(permissions, WRITE_REQUEST_CODE);                                   // dan... tmbh permission di manifest
 
     }
 
