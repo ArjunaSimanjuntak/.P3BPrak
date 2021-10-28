@@ -117,21 +117,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentTransaction ft = this.fragmentManager.beginTransaction();
         switch (item.getItemId()) {                                                                 // ? kl pake binding??
             case R.id.nav_home:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'landing page ditekan");
                 // ke landing page..
+                ft.replace(this.bindingMain.fragmentContainer.getId(),
+                        new HomeFragment()).commit();
                 break;
             case R.id.nav_filmlists:                                                                Log.d(TAG, "onNavigationItemSelected: item dr menu, 'page lists ditekan");
                 // ke page film lists
+                ft.replace(this.bindingMain.fragmentContainer.getId(),
+                        new WishlistFragment()).commit();
                 break;
             case R.id.nav_somepage:                                                                 Log.d(TAG, "onNavigationItemSelected: item dr menu, 'go to some page! ditekan");// ke fragment Some Page
-                getSupportFragmentManager().beginTransaction().replace(this.bindingMain.fragmentContainer.getId(),
+                ft.replace(this.bindingMain.fragmentContainer.getId(),
                         new SomePage()).commit();
                 break;
             case R.id.nav_exit:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'Exit ditekan");
                 closeApplication();                                                                 // keluar aplikasi
                 break;
         }
+
+
 
         drawer.closeDrawer(GravityCompat.START);                                                    // terus tutup lg drawer nya
         return true;
