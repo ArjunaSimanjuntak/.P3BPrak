@@ -36,15 +36,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
 
-
-
-    public static Movie[] movieObjectArr = {
-            new Movie("WatchMen", "synopsis"),                                          //"status TRUE", "ini review watchmen", 5),
-            new Movie("Fargo", "synopsis something something"),
-            new Movie("Venom", "synopsis tentang venom "),
-            new Movie("Game Of Thrones", "Sinopsis tentang GOT"),
-            new Movie("Taxi Driver", "taxitaxitaxi")
-    };
                                                                                                     //            new Movie("Fargo", "synopsis something something ", "status FALSE", "", 0),
                                                                                                     //            new Movie("Venom", "synopsis tentang venom ", "status FALSE", "", 0),
                                                                                                     //            new Movie("Game Of Thrones", "Sinopsis tentang GOT", "status FALSE", "", 0)
