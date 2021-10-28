@@ -24,7 +24,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
             new Movie("WatchMen", "synopsis"),                                          //"status TRUE", "ini review watchmen", 5),
             new Movie("Fargo", "synopsis something something"),
             new Movie("Venom", "synopsis tentang venom "),
-            new Movie("Game Of Thrones", "Sinopsis tentang GOT"),
+            new Movie("Game Of Thrones", "Sinopsis tentang GOT"),                       //19
             new Movie("Game Of Thrones", "Sinopsis tentang GOT"),
             new Movie("Game Of Thrones", "Sinopsis tentang GOT"),
             new Movie("Game Of Thrones", "Sinopsis tentang GOT"),

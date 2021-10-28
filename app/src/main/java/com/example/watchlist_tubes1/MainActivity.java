@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // (?)
         // Permission                                                                               (cukup SEKALI)
-        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};                        // dan override onrequest permission result.. dan import package manager nya lagi                                                     // dan override onrequest permission result.. dan import package manager nya lagi
-        this.requestPermissions(permissions, WRITE_REQUEST_CODE);                                   // dan... tmbh permission di manifest
+//        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};                        // dan override onrequest permission result.. dan import package manager nya lagi                                                     // dan override onrequest permission result.. dan import package manager nya lagi
+//        this.requestPermissions(permissions, WRITE_REQUEST_CODE);                                   // dan... tmbh permission di manifest
 
     }
 

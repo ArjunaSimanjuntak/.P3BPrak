@@ -92,15 +92,21 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
 
         public void updateView(Movie currentMovie){
             Log.d("debug", "masuk updateView");
+
             itemListWatchlistBinding.tvListJudul.setText(currentMovie.getTitle());
             this.currentMovie = currentMovie;
+
+
+            if(this.currentMovie.getStatus()== false){
+                itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_off_background);
+            }else {itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_on_background);}
         }
 
         @Override
         public void onClick(View view) {
             if(view==itemListWatchlistBinding.btnCheckbox){
                 Log.d("debug","masuk onclickCheckBox");
-                if(this.currentMovie.getStatus()== false){
+                    if(this.currentMovie.getStatus()== false){
                     Log.d("debug","masuk if status onclickCheckBox");
                     this.currentMovie.setStatus(true);
                     itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_on_background);
