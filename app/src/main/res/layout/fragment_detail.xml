@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/judul_list"
         android:textSize="@dimen/ukuran_judul_list"
-        android:layout_marginStart="@dimen/marginStart_judul" />
+        android:layout_gravity="center"/>
 
     <View
         android:layout_width="match_parent"
@@ -25,5 +25,65 @@
         android:layout_marginEnd="@dimen/marginEnd_separator">
     </View>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_status"
+        android:textSize="@dimen/ukuran_status"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/marginStart_judul"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_star">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/star_big_off"
+            android:id="@+id/btn_star_1"
+            android:paddingRight="@dimen/padding_list"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/star_big_off"
+            android:id="@+id/btn_star_2"
+            android:paddingRight="@dimen/padding_list"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/star_big_off"
+            android:id="@+id/btn_star_3"
+            android:paddingRight="@dimen/padding_list"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/star_big_off"
+            android:id="@+id/btn_star_4"
+            android:paddingRight="@dimen/padding_list"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/star_big_off"
+            android:id="@+id/btn_star_5" />
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginStart_separator"
+        android:hint="@string/et_review"/>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        android:layout_gravity="end"
+        android:layout_marginRight="@dimen/marginStart_separator"/>
 
 </LinearLayout>

@@ -14,4 +14,7 @@
     <string name="openDrawer">Open navigation drawer</string>
     <string name="closeDrawer">Close navigation drawer</string>
     <string name="add">Add</string>
+    <string name="tv_status">Status : Completed</string>
+    <string name="et_review">Input your review here</string>
+    <string name="btn_save">Save</string>
 </resources>
