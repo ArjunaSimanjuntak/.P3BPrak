@@ -4,10 +4,11 @@
     <dimen name="ukuran_judul_list">35sp</dimen>
     <dimen name="marginEnd_separator">20sp</dimen>
     <dimen name="marginStart_separator">20sp</dimen>
-    <dimen name="padding_list">10px</dimen>
+    <dimen name="padding_list">10dp</dimen>
 
-    <dimen name="marginStart_judul">10sp</dimen>
+    <dimen name="marginStart_judul">20sp</dimen>
     <dimen name="margin_fab">16dp</dimen>
+    <dimen name="ukuran_poster">200sp</dimen>
 
     <!--    ke item-->
 <!--    <item name="marginStart_judul" type="dimen" format="float">14.5sp</item>-->

@@ -104,9 +104,11 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
                     Log.d("debug","masuk if status onclickCheckBox");
                     this.currentMovie.setStatus(true);
                     itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_on_background);
+                    //harusnya masuk ke fragment detail
                 } else{
                     this.currentMovie.setStatus(false);
                     itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_off_background);
+                    //harusnya nampilin alert box
                 }
             }
         }
