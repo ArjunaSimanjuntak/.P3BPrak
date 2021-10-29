@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.watchlist_tubes1.databinding.FragmentDaftarWatchlistBinding;
+import com.example.watchlist_tubes1.databinding.ItemListWatchlistBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
     FragmentDaftarWatchlistBinding binding;
     private ListView listView;
     private WishlistAdapter adapter;
+    ItemListWatchlistBinding watchlistBinding;
     private MoviePresenter moviePresenter;
     private DatabaseHelper dbHelper;
 
@@ -93,7 +95,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
 
         while(cursor.moveToNext()) {
             itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(dbHelper.getColumnId()));                          //
+                    cursor.getColumnIndexOrThrow(DatabaseHelper.getColumnId()));                          //
             itemIds.add(itemId);
 //            listMoviedrDB.add(cursor.get)
 
@@ -136,6 +138,12 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
         Bundle result = new Bundle();
         if(view==binding.btnAddFab){
             result.putInt("page", 3);
+            this.getParentFragmentManager()
+                    .setFragmentResult("changePage", result);
+        }
+        else if(view==watchlistBinding.btnCheckbox){
+            Log.d("debug", "masuk btn_checklist link fragment detail");
+            result.putInt("page", 4);
             this.getParentFragmentManager()
                     .setFragmentResult("changePage", result);
         }

@@ -1,6 +1,7 @@
 package com.example.watchlist_tubes1;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMoviePresenter{
     private List<Movie> listMovie;
-    private Fragment fragment;
+    private final Fragment fragment;
 
     public WishlistAdapter(Fragment fragment){
         this.fragment = fragment;
@@ -105,11 +106,16 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
         @Override
         public void onClick(View view) {
             if(view==itemListWatchlistBinding.btnCheckbox){
+                /*Bundle result = new Bundle();
+                result.putInt("page", 4);
+                this.getParentFragmentManager()
+                        .setFragmentResult("changePage", result);*/
                 Log.d("debug","masuk onclickCheckBox");
                     if(this.currentMovie.getStatus()== false){
                     Log.d("debug","masuk if status onclickCheckBox");
                     this.currentMovie.setStatus(true);
                     itemListWatchlistBinding.btnCheckbox.setImageResource(android.R.drawable.checkbox_on_background);
+
                     //harusnya masuk ke fragment detail
                 } else{
                     this.currentMovie.setStatus(false);

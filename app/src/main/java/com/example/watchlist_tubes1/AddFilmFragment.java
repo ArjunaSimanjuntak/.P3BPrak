@@ -73,6 +73,7 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
         binding.etSynopsis.getText().clear();
 
 
+
         Bundle result = new Bundle();
         result.putInt("page", 2);
         this.getParentFragmentManager()

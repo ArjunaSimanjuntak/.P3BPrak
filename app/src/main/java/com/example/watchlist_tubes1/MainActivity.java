@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private WishlistFragment wishlistFragment;
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
+    private DetailFragment detailFragment;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.wishlistFragment = new WishlistFragment();
         this.addFilmFragment = new AddFilmFragment();
         this.fragmentManager = this.getSupportFragmentManager();
+        this.detailFragment = new DetailFragment();
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(bindingMain.fragmentContainer.getId(), this.homeFragment)
                 .addToBackStack(null).commit();
@@ -180,6 +182,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.hide(this.wishlistFragment);
             }
 
+        }
+        else if(page==4){
+            Log.d("debug", "masuk ke detail");
+            //Menggunakan methode show and hide
+            if (this.detailFragment.isAdded()) {
+                ft.show(this.detailFragment);
+            } else {
+                ft.add(bindingMain.fragmentContainer.getId(), this.detailFragment).addToBackStack(null);
+            }
+            if (this.wishlistFragment.isAdded()) {
+                ft.hide(this.wishlistFragment);
+            }
         }
         ft.commit();
         Log.d("debug", "commit changePage");
