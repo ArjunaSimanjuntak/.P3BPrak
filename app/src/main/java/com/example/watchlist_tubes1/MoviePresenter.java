@@ -15,6 +15,7 @@ public class MoviePresenter {
         this.movies = new ArrayList<Movie>();
     }
 
+    // load data pake arr (dummy data)
     public void loadData (Movie[] arrMovie) {
         //
         if (this.movies.isEmpty()) {
@@ -25,6 +26,17 @@ public class MoviePresenter {
         }
 
         this.ui.updateListMovie(movies);
+    }
+
+    // load data pake list movie
+    public void addMovies (List<Movie> movies) {
+        this.movies = movies;
+
+//        this.ui.updateListMovie(movies);
+    }
+
+    public List<Movie> getMovies () {
+        return this.movies;
     }
 
 

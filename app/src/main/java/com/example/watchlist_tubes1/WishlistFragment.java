@@ -21,14 +21,15 @@ import java.util.List;
 
 public class WishlistFragment extends Fragment implements View.OnClickListener, MoviePresenter.IMoviePresenter {
     private static final String TAG = "debug WishlistFrag";
-    FragmentDaftarWatchlistBinding binding;
+    private FragmentDaftarWatchlistBinding binding;
     private ListView listView;
     private WishlistAdapter adapter;
-    ItemListWatchlistBinding watchlistBinding;
+    private ItemListWatchlistBinding watchlistBinding;
     private MoviePresenter moviePresenter;
     private DatabaseHelper dbHelper;
 
-    // dummy data
+
+    // dummy data (pas loaddata(), gadipake lg)
     public static Movie[] movieObjectArr = {
             new Movie("WatchMen", "synopsis"),                                          //"status TRUE", "ini review watchmen", 5),
             new Movie("Fargo", "synopsis something something"),
@@ -151,7 +152,8 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void updateListMovie(List<Movie> movieLists) {
-        Toast.makeText(this.getContext(), "list updated!", Toast.LENGTH_SHORT).show();               // ngasi tau
+                                                                                                    Log.d(TAG, "updateListMovie: masuk updateList si fragwishlist");
+        // Toast.makeText(this.getContext(), "list updated!", Toast.LENGTH_SHORT).show();               // ngasi tau
         this.adapter.updateListMovie(movieLists);
     }
 }

@@ -73,6 +73,7 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
 
 
 
+
     @Override
     public void updateListMovie(List<Movie> movieLists) {
         this.listMovie = movieLists;

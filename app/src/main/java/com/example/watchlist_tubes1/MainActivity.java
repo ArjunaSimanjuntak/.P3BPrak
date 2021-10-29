@@ -26,7 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MoviePresenter.IMoviePresenter{
     private static final int WRITE_REQUEST_CODE = 1;
     String TAG = "debug MainAct";
     private ActivityMainBinding bindingMain;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
     private DetailFragment detailFragment;
+    private MoviePresenter presenter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View layout = bindingMain.getRoot();
         setContentView(layout);
 
+
+        //MoviePresenter
+        this.presenter = new MoviePresenter(this);
 
 
         Toolbar toolbar = bindingMain.toolbar;                                                          // modul Praktikum_03 v2    & https://youtu.be/zYVEMCiDcmY
@@ -139,10 +143,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void changePage(int page){
-        Log.d("debug", "masuk method changePage");
+                                                                                                    Log.d("debug", "masuk method changePage");
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         if(page==1){
-            Log.d("debug", "Masuk page 1");
+                                                                                                    Log.d("debug", "Masuk page 1 (landing page)");
             //Menggunakan show and hide
             if(this.homeFragment.isAdded()){
                 ft.show(this.homeFragment);
@@ -155,10 +159,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         } else if(page==2){
-            Log.d("debug", "masuk ke dalam page2");
+                                                                                                    Log.d("debug", "masuk ke dalam page2 (wishlist fragment)");
             //Menggunakan methode show and hide
             if(this.wishlistFragment.isAdded()){
                 ft.show(this.wishlistFragment);
+                wishlistFragment.updateListMovie(presenter.getMovies());                            // bisa ke updateList(), tp listnya gaberubah?
             }
             else{
                 ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment).addToBackStack(null);
@@ -170,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.hide(this.addFilmFragment);
             }
         } else if(page==3){
-            Log.d("debug", "masuk ke dalam page2");
+                                                                                                    Log.d("debug", "masuk ke dalam page3 (addfilm fragment)");
             //Menggunakan methode show and hide
             if(this.addFilmFragment.isAdded()){
                 ft.show(this.addFilmFragment);
@@ -184,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(page==4){
-            Log.d("debug", "masuk ke detail");
+                                                                                                    Log.d("debug", "masuk ke detail (page 4)");
             //Menggunakan methode show and hide
             if (this.detailFragment.isAdded()) {
                 ft.show(this.detailFragment);
@@ -219,5 +224,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+    }
+
+    @Override
+    public void updateListMovie(List<Movie> movieLists) {
+        //
     }
 }
