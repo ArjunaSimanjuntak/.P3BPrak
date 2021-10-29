@@ -45,10 +45,15 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
         ///////tes nambah ke database
         // udah pasti add ditekan karna cuman satu button yg listen
         Movie newMovie = null;
+
         try {                                                                                       // manatau error (?)
+
             String newTitle = binding.etTitle.getText().toString();
             String newSynopsis = binding.etSynopsis.getText().toString();
-            newMovie = new Movie(newTitle, newSynopsis);
+
+            if (!newTitle.equals("") || !newSynopsis.equals("")) {
+                newMovie = new Movie(newTitle, newSynopsis);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +69,9 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
         }
 
         //////
+        binding.etTitle.getText().clear();
+        binding.etSynopsis.getText().clear();
+
 
         Bundle result = new Bundle();
         result.putInt("page", 2);
