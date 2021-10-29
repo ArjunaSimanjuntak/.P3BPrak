@@ -80,6 +80,8 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
             dbHelper = new DatabaseHelper(this.getContext());
         }
 
+//        dbHelper.deleteAllData();
+
         Cursor cursor = dbHelper.getAllData();                                                         // datanya yg diambil
 
         List itemIds = new ArrayList<>();
@@ -112,6 +114,20 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
         binding.btnAddFab.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        List<Movie> moviesFromDB = new ArrayList<>();
+
+        if (dbHelper == null) {
+            dbHelper = new DatabaseHelper(this.getContext());
+        }
+        moviesFromDB = dbHelper.getAllMovie();
+
+        updateListMovie(moviesFromDB);
     }
 
     @Override

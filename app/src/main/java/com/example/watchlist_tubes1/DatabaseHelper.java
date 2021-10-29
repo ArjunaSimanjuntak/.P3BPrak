@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    // dipanggil waktu versi db beruba
+    // dipanggil waktu versi db beruba (kapan?)
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {                           // i oldVersion, i1 newVersion
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -92,8 +92,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             //
+            do {
+                int movieID = cursor.getInt(0);
+                String movieTitle = cursor.getString(1);
+                String movieSynopsis = cursor.getString(2);
+                String movieReview = cursor.getString(3);
+                boolean movieStatus = cursor.getInt(4) == 1 ? true:false;                       // kl cursor.getintnya 1 isi statusnya true, kl 0 false
+                int movieStar = cursor.getInt(5);
+
+                                                                                                    // buat objek dr cursor iterasi ke skrng, untuk nanti diisikan ke list, yg list movie itu bkl di return
+                Movie theMovie = new Movie(movieTitle, movieSynopsis);
+                theMovie.setReview(movieReview);                                                    // dan isi sisanya
+                theMovie.setStatus(movieStatus);
+                theMovie.setStar(movieStar);
+
+
+                allMovies.add(theMovie);                                                            // masukkin ke list
+
+            } while (cursor.moveToNext());                                                         // terus lanjut lagi
+        } else {
+            // kl gaada isinya
         }
 
+        // perlu?? !!!
+//        cursor.close();
+//        db.close();
 
         return allMovies;                                                                              // ada kemungkinan ngembaliin null
     }
@@ -165,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_STATUS, status);
         values.put(COLUMN_STAR, star);
 
-        long result = db.update(TABLE_NAME, values, "_id=?", new String[]{row_id});
+        long result = db.update(TABLE_NAME, values, "id=?", new String[]{row_id});
         if(result == -1){
 //            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }else {
@@ -178,7 +201,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     void deleteRowbyID(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
 //        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
-        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
+        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});              // (param ke3) whereArgs: 	String: You may include ?s in the where clause, which will be replaced by the values from whereArgs. The values will be bound as Strings.
+
+
         if(result == -1){
 //            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         }else{
@@ -189,6 +214,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // sekali aja dipanggil buat ngapus
     void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME);
+//        db.execSQL("DELETE FROM " + TABLE_NAME);
+
+        onUpgrade(db, 0, 0);
     }
 }
