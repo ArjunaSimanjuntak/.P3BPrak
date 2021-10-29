@@ -46,7 +46,9 @@ public class AddFilmFragment extends Fragment implements View.OnClickListener {
         // udah pasti add ditekan karna cuman satu button yg listen
         Movie newMovie = null;
         try {                                                                                       // manatau error (?)
-            newMovie = new Movie(binding.etTitle.toString(), binding.etSynopsis.toString());
+            String newTitle = binding.etTitle.getText().toString();
+            String newSynopsis = binding.etSynopsis.getText().toString();
+            newMovie = new Movie(newTitle, newSynopsis);
         } catch (Exception e) {
             e.printStackTrace();
         }

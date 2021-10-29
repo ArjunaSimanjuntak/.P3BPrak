@@ -9,6 +9,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "debug DBHelper";
 
@@ -76,13 +79,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;                                                                              // ada kemungkinan ngembaliin null
     }
 
+    public List<Movie> getAllMovie(){
+        List<Movie> allMovies = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);                                          // diisi data sama datanya
+        }
+
+        if (cursor.moveToFirst()) {
+            //
+        }
+
+
+        return allMovies;                                                                              // ada kemungkinan ngembaliin null
+    }
+
+
+    public Cursor getMoviebyId (int idMovie) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME
+                + " WHERE " + COLUMN_ID + " = " + idMovie;
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);                                          // diisi data sama datanya
+        }
+
+
+        return cursor;
+    }
+
 
 
     // ngasal
-    public boolean addMovie (Movie theMovie) {                                                      Log.d(TAG, "addMovie: ");
+    public boolean addMovie (Movie newMovie) {                                                      Log.d(TAG, "addMovie: ");
         boolean apaBisa = true;
 
-        if (theMovie == null) {
+        if (newMovie == null) {
             Log.d(TAG, "addMovie: movie masukan belum diisi. null");
             return false;
         }
@@ -92,13 +129,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();                                                     // prlu import. smcm hash map, atau array(?)
 
-        values.put(COLUMN_TITLE, theMovie.getTitle());                                                  // key, value...
-        values.put(COLUMN_SYNOPSIS, theMovie.getSynopsis());
-        values.put(COLUMN_REVIEW, theMovie.getReview());
-        values.put(COLUMN_STATUS, theMovie.getStatus());
-        values.put(COLUMN_STAR, theMovie.getStar());
+                                                                                                    Log.d(TAG, "addMovie: newMovie title nya: " + newMovie.getTitle());
+        values.put(COLUMN_TITLE, newMovie.getTitle());                                                  // key, value...
+                                                                                                    Log.d(TAG, "addMovie: newMovie synopsis nya: " + newMovie.getSynopsis());
+        values.put(COLUMN_SYNOPSIS, newMovie.getSynopsis());
+                                                                                                    Log.d(TAG, "addMovie: newMovie review nya: " + newMovie.getReview());
+        values.put(COLUMN_REVIEW, newMovie.getReview());
+                                                                                                    Log.d(TAG, "addMovie: newMovie status nya: " + newMovie.getStatus());
+        values.put(COLUMN_STATUS, newMovie.getStatus());
+                                                                                                    Log.d(TAG, "addMovie: newMovie star nya: " + newMovie.getStar());
+        values.put(COLUMN_STAR, newMovie.getStar());
 
-                                                                                                    Log.d(TAG, "addMovie: the movie: " + theMovie.toString());
+                                                                                                    Log.d(TAG, "addMovie: the movie toStringnya: " + newMovie.toString());
                                                                                                     // insert.
                                                                                                     //  long result = db.insert(TABLE_NAME,null, values);                                  // result + kl berhasil, - gagal
         // Insert the new row, returning the primary key value of the new row
@@ -133,13 +175,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    void deleteARow(String row_id){
+    void deleteRowbyID(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+//        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
         if(result == -1){
 //            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         }else{
 //            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // sekali aja dipanggil buat ngapus
+    void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 }
