@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -142,6 +143,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void updateListMovie(List<Movie> movieLists) {
+        Toast.makeText(this.getContext(), "list updated!", Toast.LENGTH_SHORT).show();               // ngasi tau
         this.adapter.updateListMovie(movieLists);
     }
 }

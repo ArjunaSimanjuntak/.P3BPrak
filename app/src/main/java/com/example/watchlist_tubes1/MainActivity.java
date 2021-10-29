@@ -36,10 +36,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AddFilmFragment addFilmFragment;
     private FragmentManager fragmentManager;
 
-                                                                                                    //            new Movie("Fargo", "synopsis something something ", "status FALSE", "", 0),
-                                                                                                    //            new Movie("Venom", "synopsis tentang venom ", "status FALSE", "", 0),
-                                                                                                    //            new Movie("Game Of Thrones", "Sinopsis tentang GOT", "status FALSE", "", 0)
-                                                                                                    //            new Movie("Taxi Driver", "taxitaxitaxi", "status FALSE", "", 0)
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
