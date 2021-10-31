@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoviePresenter {
-    private static final String TAG = "debug MoviePresenter";                                       // debug
+    private static final String TAG = "debug MoviePresenter";
     protected List<Movie> movies;
     protected IMoviePresenter ui;
 
@@ -15,9 +15,7 @@ public class MoviePresenter {
         this.movies = new ArrayList<Movie>();
     }
 
-    // load data pake arr (dummy data)
     public void loadData (Movie[] arrMovie) {
-        //
         if (this.movies.isEmpty()) {
             for (Movie movie : arrMovie) {
                                                                                                     Log.d(TAG, "loadData: , movie.gettitle(): "+ movie.getTitle() + ", .getSynopsis(): " + movie.getSynopsis());
@@ -28,11 +26,9 @@ public class MoviePresenter {
         this.ui.updateListMovie(movies);
     }
 
-    // load data pake list movie
+
     public void addMovies (List<Movie> movies) {
         this.movies = movies;
-
-//        this.ui.updateListMovie(movies);
     }
 
     public List<Movie> getMovies () {

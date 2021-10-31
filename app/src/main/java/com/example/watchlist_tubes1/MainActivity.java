@@ -114,10 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_filmlists:                                                                Log.d(TAG, "onNavigationItemSelected: item dr menu, 'page lists ditekan");
                 changePage(2);
                 break;
-            case R.id.nav_somepage:                                                                 Log.d(TAG, "onNavigationItemSelected: item dr menu, 'go to some page! ditekan");// ke fragment Some Page
-                ft.replace(this.bindingMain.fragmentContainer.getId(),
-                        new SomePage()).commit();
-                break;
             case R.id.nav_exit:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'Exit ditekan");
                 closeApplication();
                 break;
@@ -205,10 +201,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (requestCode) {
             case WRITE_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Granted
                     Log.d("REQPERM", "Granted");
-                } else {                                                                            // masih denied
-                    // Denied
+                } else {
                     Log.d("REQPERM", "Denied");
                 }
                 break;
