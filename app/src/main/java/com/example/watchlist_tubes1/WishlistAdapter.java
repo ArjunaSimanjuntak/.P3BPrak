@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.watchlist_tubes1.databinding.ItemListWatchlistBinding;
 
@@ -17,10 +18,16 @@ import java.util.List;
 public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMoviePresenter{
     private List<Movie> listMovie;
     private final Fragment fragment;
+    private final IKeDetail iKeDetail;
 
-    public WishlistAdapter(Fragment fragment){
+    public interface IKeDetail{
+        void changePageDetail(String page, int detailPage);
+    }
+
+    public WishlistAdapter(Fragment fragment, IKeDetail detail){
         this.fragment = fragment;
         this.listMovie = new ArrayList<Movie>();
+        this.iKeDetail = detail;
     }
 
     public void addLine(Movie newItem){
@@ -83,6 +90,7 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
     private class ViewHolder implements View.OnClickListener {
         ItemListWatchlistBinding itemListWatchlistBinding;
         Movie currentMovie;
+        FragmentManager fm;
 
         public ViewHolder(ItemListWatchlistBinding itemListWatchlistBinding){
             Log.d("debug", "masuk ViewHolder");
@@ -90,6 +98,9 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
 
             itemListWatchlistBinding.btnCheckbox.setOnClickListener(this);
             itemListWatchlistBinding.tvListJudul.setOnClickListener(this);
+
+            /*fm = new FragmentManager() {
+            }*/
         }
 
         public void updateView(Movie currentMovie){
@@ -111,6 +122,7 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
                 result.putInt("page", 4);
                 this.getParentFragmentManager()
                         .setFragmentResult("changePage", result);*/
+                iKeDetail.changePageDetail("page", 4);
                 Log.d("debug","masuk onclickCheckBox");
                     if(this.currentMovie.getStatus()== false){
                     Log.d("debug","masuk if status onclickCheckBox");

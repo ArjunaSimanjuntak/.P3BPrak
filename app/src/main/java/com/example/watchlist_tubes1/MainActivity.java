@@ -174,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(this.addFilmFragment.isAdded()){
                 ft.hide(this.addFilmFragment);
             }
+            if(this.detailFragment.isAdded()){
+                ft.hide(this.detailFragment);
+            }
         } else if(page==3){
                                                                                                     Log.d("debug", "masuk ke dalam page3 (addfilm fragment)");
             //Menggunakan methode show and hide

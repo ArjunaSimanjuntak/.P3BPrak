@@ -35,7 +35,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         //Belum selesai
         Bundle result = new Bundle();
         if(view==binding.btnSave){
-            result.putInt("page", 3);
+            result.putInt("page", 2);
             this.getParentFragmentManager()
                     .setFragmentResult("changePage", result);
         }
