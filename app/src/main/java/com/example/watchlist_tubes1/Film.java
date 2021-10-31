@@ -1,53 +1,51 @@
 package com.example.watchlist_tubes1;
 
-public class Series {
-    protected String title, synopsis, review, episodeDetail;
+// maunya polymorphism, inheritence
+// film adalah sebuah Movie dan Series
+public class Film {
+    protected String title, synopsis, review;
     protected boolean status;
     protected int star;
 
-    public Series(String title, String synopsis, String episodeDetail) {
+    public Film(String title, String synopsis) {
         this.title = title;
         this.synopsis = synopsis;
-        this.episodeDetail = episodeDetail;
-        this.review = "";
-        this.status = false;
-        this.star= 0;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public String getReview() {
-        return review;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public int getStar() {
-        return star;
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
     }
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
 
+    public String getReview() {
+        return review;
+    }
+
     public void setReview(String review) {
         this.review = review;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public int getStar() {
+        return star;
     }
 
     public void setStar(int star) {

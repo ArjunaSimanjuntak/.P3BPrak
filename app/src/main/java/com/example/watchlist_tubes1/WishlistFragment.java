@@ -19,7 +19,7 @@ import com.example.watchlist_tubes1.databinding.ItemListWatchlistBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WishlistFragment extends Fragment implements View.OnClickListener, MoviePresenter.IMoviePresenter {
+public class WishlistFragment extends Fragment implements View.OnClickListener, MoviePresenter.IMoviePresenter, WishlistAdapter.IKeDetail {
     private static final String TAG = "debug WishlistFrag";
     private FragmentDaftarWatchlistBinding binding;
     private ListView listView;
@@ -73,8 +73,9 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
 
         //Implement list adapter
         this.listView = binding.listMovie;
-        this.adapter = new WishlistAdapter(this);
+        this.adapter = new WishlistAdapter(this, this );
         this.listView.setAdapter(this.adapter);
+        this.watchlistBinding = ItemListWatchlistBinding.inflate(getLayoutInflater());
 
         this.moviePresenter.loadData(movieObjectArr);
 
@@ -144,9 +145,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
         }
         else if(view==watchlistBinding.btnCheckbox){
             Log.d("debug", "masuk btn_checklist link fragment detail");
-            result.putInt("page", 4);
-            this.getParentFragmentManager()
-                    .setFragmentResult("changePage", result);
+
         }
     }
 
@@ -155,5 +154,13 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
                                                                                                     Log.d(TAG, "updateListMovie: masuk updateList si fragwishlist");
         // Toast.makeText(this.getContext(), "list updated!", Toast.LENGTH_SHORT).show();               // ngasi tau
         this.adapter.updateListMovie(movieLists);
+    }
+
+    @Override
+    public void changePageDetail(String page, int detailPage) {
+        Bundle result = new Bundle();
+        result.putInt(page, detailPage);
+        this.getParentFragmentManager()
+                .setFragmentResult("changePage", result);
     }
 }
