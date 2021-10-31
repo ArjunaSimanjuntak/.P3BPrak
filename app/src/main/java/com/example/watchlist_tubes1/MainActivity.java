@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        switch (item.getItemId()) {                                                                 // ? kl pake binding??
+        switch (item.getItemId()) {                                                                 
             case R.id.nav_home:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'landing page ditekan");
                 changePage(1);
                 break;
