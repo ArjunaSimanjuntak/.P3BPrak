@@ -7,7 +7,7 @@ public class Movie {
     protected boolean status;
     protected int star;
 
-    protected DatabaseHelper myDB;                                                                  // dipake disini?
+    protected DatabaseHelper myDB;                                                                 
 
     public Movie(String title, String synopsis) {
         this.title = title;
