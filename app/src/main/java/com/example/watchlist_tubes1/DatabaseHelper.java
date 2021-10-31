@@ -178,7 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // waktu mau review
                                                                             // status movie shrsnya gabisa diganti ?
-    void updateData(String row_id, String title, String synopsis, String review, String status, int star){
+    public void updateData(String row_id, String title, String synopsis, String review, String status, int star){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -198,7 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    void deleteRowbyID(String row_id){
+    public void deleteRowbyID(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
 //        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});              // (param ke3) whereArgs: 	String: You may include ?s in the where clause, which will be replaced by the values from whereArgs. The values will be bound as Strings.
