@@ -56,10 +56,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         * */
 
 
-
-    // dipanggil waktu versi db beruba (kapan?)
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {                           // i oldVersion, i1 newVersion
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {                                       // i oldVersion, i1 newVersion
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
@@ -87,7 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = null;
         if(db != null){
-            cursor = db.rawQuery(query, null);                                          // diisi data sama datanya
+            cursor = db.rawQuery(query, null);
         }
 
         if (cursor.moveToFirst()) {
@@ -97,28 +95,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String movieTitle = cursor.getString(1);
                 String movieSynopsis = cursor.getString(2);
                 String movieReview = cursor.getString(3);
-                boolean movieStatus = cursor.getInt(4) == 1 ? true:false;                       // kl cursor.getintnya 1 isi statusnya true, kl 0 false
+                boolean movieStatus = cursor.getInt(4) == 1 ? true:false;
                 int movieStar = cursor.getInt(5);
 
-                                                                                                    // buat objek dr cursor iterasi ke skrng, untuk nanti diisikan ke list, yg list movie itu bkl di return
+
                 Movie theMovie = new Movie(movieTitle, movieSynopsis);
-                theMovie.setReview(movieReview);                                                    // dan isi sisanya
+                theMovie.setReview(movieReview);
                 theMovie.setStatus(movieStatus);
                 theMovie.setStar(movieStar);
 
 
-                allMovies.add(theMovie);                                                            // masukkin ke list
+                allMovies.add(theMovie);
 
-            } while (cursor.moveToNext());                                                         // terus lanjut lagi
+            } while (cursor.moveToNext());
         } else {
-            // kl gaada isinya
+
         }
 
-        // perlu?? !!!
-//        cursor.close();
-//        db.close();
 
-        return allMovies;                                                                              // ada kemungkinan ngembaliin null
+        return allMovies;
     }
 
 
@@ -129,7 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = null;
         if(db != null){
-            cursor = db.rawQuery(query, null);                                          // diisi data sama datanya
+            cursor = db.rawQuery(query, null);
         }
 
 
@@ -138,7 +133,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    // ngasal
     public boolean addMovie (Movie newMovie) {                                                      Log.d(TAG, "addMovie: ");
         boolean apaBisa = true;
 
@@ -164,25 +158,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_STAR, newMovie.getStar());
 
                                                                                                     Log.d(TAG, "addMovie: the movie toStringnya: " + newMovie.toString());
-                                                                                                    // insert.
-                                                                                                    //  long result = db.insert(TABLE_NAME,null, values);                                  // result + kl berhasil, - gagal
-        // Insert the new row, returning the primary key value of the new row
+
         long newRowId = db.insert(TABLE_NAME, null, values);
 
 
-        if( newRowId < 0) { apaBisa = false; }                                                        // atau lgsg return false
+        if( newRowId < 0) { apaBisa = false; }
 
         return apaBisa;
     }
 
-
-    // waktu mau review
-                                                                            // status movie shrsnya gabisa diganti ?
     public void updateData(String row_id, String title, String synopsis, String review, String status, int star){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_TITLE, title);                                                            // key, value...
+        values.put(COLUMN_TITLE, title);
         values.put(COLUMN_SYNOPSIS, synopsis);
         values.put(COLUMN_REVIEW, review);
         values.put(COLUMN_STATUS, status);
@@ -200,21 +189,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteRowbyID(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-//        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
-        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});              // (param ke3) whereArgs: 	String: You may include ?s in the where clause, which will be replaced by the values from whereArgs. The values will be bound as Strings.
+        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
 
 
         if(result == -1){
-//            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
+
         }else{
-//            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+
         }
     }
 
     // sekali aja dipanggil buat ngapus
     void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
-//        db.execSQL("DELETE FROM " + TABLE_NAME);
 
         onUpgrade(db, 0, 0);
     }

@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.watchlist_tubes1.databinding.FragmentAddFilmBinding;
 import com.example.watchlist_tubes1.databinding.FragmentDetailBinding;
 
 public class DetailFragment extends Fragment implements View.OnClickListener {
@@ -32,7 +31,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        //Belum selesai
         Bundle result = new Bundle();
         if(view==binding.btnSave){
             result.putInt("page", 2);

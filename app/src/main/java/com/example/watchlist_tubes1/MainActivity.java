@@ -45,14 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.bindingMain = ActivityMainBinding.inflate(this.getLayoutInflater());                       // binding
+        this.bindingMain = ActivityMainBinding.inflate(this.getLayoutInflater());
         View layout = bindingMain.getRoot();
         setContentView(layout);
 
 
-        //MoviePresenter
         this.presenter = new MoviePresenter(this);
-
 
         Toolbar toolbar = bindingMain.toolbar;                                                          // modul Praktikum_03 v2    & https://youtu.be/zYVEMCiDcmY
         setSupportActionBar(toolbar);
@@ -64,12 +62,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(abdt);
         abdt.syncState();
 
-        NavigationView navigationView = bindingMain.navView;                                        // ambil navview supaya item" di menu dalem nav view bisa dipake
-        navigationView.setNavigationItemSelectedListener(this);                                     // jd implement onnavigation blabla
+        NavigationView navigationView = bindingMain.navView;
+        navigationView.setNavigationItemSelectedListener(this);
 
 
-        // fragment manager..
-        this.homeFragment = new HomeFragment();                                                     // awal onCreate ini, add ke stack si landing Page, tp di awal oncreate aja, karna cuman landing page
+        this.homeFragment = new HomeFragment();
         this.wishlistFragment = new WishlistFragment();
         this.addFilmFragment = new AddFilmFragment();
         this.fragmentManager = this.getSupportFragmentManager();
@@ -78,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.add(bindingMain.fragmentContainer.getId(), this.homeFragment)
                 .addToBackStack(null).commit();
 
-        //Fragment Result API changePage()
+
         this.getSupportFragmentManager().setFragmentResultListener("changePage", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -92,18 +89,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        // (?)
         // Permission                                                                               (cukup SEKALI)
-//        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};                        // dan override onrequest permission result.. dan import package manager nya lagi                                                     // dan override onrequest permission result.. dan import package manager nya lagi
-//        this.requestPermissions(permissions, WRITE_REQUEST_CODE);                                   // dan... tmbh permission di manifest
+//        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//        this.requestPermissions(permissions, WRITE_REQUEST_CODE);
 
     }
 
     @Override
-    public void onBackPressed() {                                                                   // kl nekan back button
-        if (this.drawer.isDrawerOpen(GravityCompat.START)) {                                        // n drawer lg kebukak
-            this.drawer.closeDrawer(GravityCompat.START);                                           // tutup
-        } else {                                                                                    // kl engga, back kaya biasa
+    public void onBackPressed() {
+        if (this.drawer.isDrawerOpen(GravityCompat.START)) {
+            this.drawer.closeDrawer(GravityCompat.START);
+        } else {
             super.onBackPressed();
         }
     }
@@ -113,13 +109,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         switch (item.getItemId()) {                                                                 // ? kl pake binding??
             case R.id.nav_home:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'landing page ditekan");
-                // ke landing page..
-                //                                                                                  ft.replace(this.bindingMain.fragmentContainer.getId(), new HomeFragment()).commit();
                 changePage(1);
                 break;
             case R.id.nav_filmlists:                                                                Log.d(TAG, "onNavigationItemSelected: item dr menu, 'page lists ditekan");
-                // ke page film lists
-                //                                                                                  ft.replace(this.bindingMain.fragmentContainer.getId(), new WishlistFragment()).commit();
                 changePage(2);
                 break;
             case R.id.nav_somepage:                                                                 Log.d(TAG, "onNavigationItemSelected: item dr menu, 'go to some page! ditekan");// ke fragment Some Page
@@ -127,13 +119,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new SomePage()).commit();
                 break;
             case R.id.nav_exit:                                                                     Log.d(TAG, "onNavigationItemSelected: item dr menu, 'Exit ditekan");
-                closeApplication();                                                                 // keluar aplikasi
+                closeApplication();
                 break;
         }
 
-
-
-        drawer.closeDrawer(GravityCompat.START);                                                    // terus tutup lg drawer nya
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -147,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         if(page==1){
                                                                                                     Log.d("debug", "Masuk page 1 (landing page)");
-            //Menggunakan show and hide
             if(this.homeFragment.isAdded()){
                 ft.show(this.homeFragment);
             }
@@ -160,10 +149,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if(page==2){
                                                                                                     Log.d("debug", "masuk ke dalam page2 (wishlist fragment)");
-            //Menggunakan methode show and hide
             if(this.wishlistFragment.isAdded()){
                 ft.show(this.wishlistFragment);
-                wishlistFragment.updateListMovie(presenter.getMovies());                            // bisa ke updateList(), tp listnya gaberubah?
+                wishlistFragment.updateListMovie(presenter.getMovies());                            // coba" pake presenter ambil movies, masi blm bisa
             }
             else{
                 ft.add(bindingMain.fragmentContainer.getId(), this.wishlistFragment).addToBackStack(null);
@@ -179,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if(page==3){
                                                                                                     Log.d("debug", "masuk ke dalam page3 (addfilm fragment)");
-            //Menggunakan methode show and hide
+
             if(this.addFilmFragment.isAdded()){
                 ft.show(this.addFilmFragment);
             }
@@ -193,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if(page==4){
                                                                                                     Log.d("debug", "masuk ke detail (page 4)");
-            //Menggunakan methode show and hide
+
             if (this.detailFragment.isAdded()) {
                 ft.show(this.detailFragment);
             } else {

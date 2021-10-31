@@ -17,9 +17,10 @@ public class Movie {
         this.star= 0;
     }
 
+    // tidak dipake
     @NonNull
     @Override
-    public String toString() {                                                                      // ngembaliin semua, dlm string
+    public String toString() {
         return "MovieModel{" +
                 "title=" + title +
                 ", synopsis=" + synopsis +
