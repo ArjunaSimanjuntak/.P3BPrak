@@ -12,6 +12,4 @@
     <dimen name="ukuran_status">20dp</dimen>
     <dimen name="margin_star">40dp</dimen>
 
-    <!--    ke item-->
-<!--    <item name="marginStart_judul" type="dimen" format="float">14.5sp</item>-->
 </resources>

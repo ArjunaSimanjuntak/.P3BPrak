@@ -2,10 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-<!--    tools:showIn for preview
-ref:
-https://youtu.be/fGcMLu1GJEc?t=456
-https://developer.android.com/guide/navigation/navigation-ui#java-->
 
     <group android:checkableBehavior="single">
 
@@ -16,7 +12,6 @@ https://developer.android.com/guide/navigation/navigation-ui#java-->
 
     </group>
 
-<!--    cara kebawah? jadiin view di layout?-->
     <item android:title="Other">
         <menu>
             <item android:id="@+id/nav_exit"

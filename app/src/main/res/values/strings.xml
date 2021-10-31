@@ -10,7 +10,7 @@
     <string name="tv_sinopsis">Synopsis</string>
     <string name="tv_poster">Add Poster</string>
 
-<!--    Accessibility, for impaired/blind people(?)-->
+<!--    Accessibility-->
     <string name="openDrawer">Open navigation drawer</string>
     <string name="closeDrawer">Close navigation drawer</string>
     <string name="add">Add</string>

@@ -21,10 +21,6 @@
         android:layout_marginEnd="@dimen/marginEnd_separator">
     </View>
 
-<!--    kenapa <View > </View> ?
-        knp gak <View /> ?-->
-    <!--Jawab : sama aja bosku wkwk-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

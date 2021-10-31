@@ -41,6 +41,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.3.1'
 
-//    untuk pake drawer layout
+
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
 }
