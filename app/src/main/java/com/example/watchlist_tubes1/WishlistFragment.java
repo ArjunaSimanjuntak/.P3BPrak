@@ -77,44 +77,14 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
         this.listView.setAdapter(this.adapter);
         this.watchlistBinding = ItemListWatchlistBinding.inflate(getLayoutInflater());
 
-        this.moviePresenter.loadData(movieObjectArr);
 
                                                                                                     Log.d(TAG, "onCreateView: coba ambil data dr sqlite");
-        // coba load dr sqlite
+        // coba sqlite
         if (dbHelper == null) {
             dbHelper = new DatabaseHelper(this.getContext());
         }
 
-//        dbHelper.deleteAllData();
-
-        Cursor cursor = dbHelper.getAllData();                                                         // datanya yg diambil
-
-        List itemIds = new ArrayList<>();
-        long itemId = 1;
-
-        ArrayList<String> listMovieTitlesdrDB = new ArrayList<>();
-        String curMovieTitle = "something!";
-
-        while(cursor.moveToNext()) {
-            itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(DatabaseHelper.getColumnId()));                          //
-            itemIds.add(itemId);
-//            listMoviedrDB.add(cursor.get)
-
-
-
-            // tes liat isinya
-            curMovieTitle = cursor.getString(1);                                                // ambil string di kolom ke2 (COLUMN_TITLE) krn dari 0, 1, 2...
-                                                                                                    Log.d(TAG, "onCreateView: isi titleMovie : " + curMovieTitle);
-            listMovieTitlesdrDB.add(curMovieTitle);
-        }
-
-
-
-
-        cursor.close();
-
-
+//        dbHelper.deleteAllData();                                                                 // kl mau bersihin sqlite
 
         binding.btnAddFab.setOnClickListener(this);
 
@@ -150,9 +120,8 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
-    public void updateListMovie(List<Movie> movieLists) {
-                                                                                                    Log.d(TAG, "updateListMovie: masuk updateList si fragwishlist");
-        // Toast.makeText(this.getContext(), "list updated!", Toast.LENGTH_SHORT).show();               // ngasi tau
+    public void updateListMovie(List<Movie> movieLists) {                                           Log.d(TAG, "updateListMovie: masuk updateList si fragwishlist");
+        Toast.makeText(this.getContext(), "Updated List on onresume()!", Toast.LENGTH_SHORT).show();
         this.adapter.updateListMovie(movieLists);
     }
 

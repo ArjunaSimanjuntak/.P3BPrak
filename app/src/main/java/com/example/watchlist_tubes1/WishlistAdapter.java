@@ -98,9 +98,6 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
 
             itemListWatchlistBinding.btnCheckbox.setOnClickListener(this);
             itemListWatchlistBinding.tvListJudul.setOnClickListener(this);
-
-            /*fm = new FragmentManager() {
-            }*/
         }
 
         public void updateView(Movie currentMovie){
