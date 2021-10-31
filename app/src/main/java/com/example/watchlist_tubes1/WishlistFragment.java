@@ -121,7 +121,7 @@ public class WishlistFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void updateListMovie(List<Movie> movieLists) {                                           Log.d(TAG, "updateListMovie: masuk updateList si fragwishlist");
-        Toast.makeText(this.getContext(), "Updated List on onresume()!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getContext(), "recreate this fragment to see the Updated List!", Toast.LENGTH_SHORT).show();
         this.adapter.updateListMovie(movieLists);
     }
 

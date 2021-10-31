@@ -58,7 +58,6 @@ public class WishlistAdapter extends BaseAdapter implements MoviePresenter.IMovi
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        //Menggunakan Recycle View dan membutuhkan ViewHolder
 
         ViewHolder viewHolder;
         ItemListWatchlistBinding itemListWatchlistBinding;
