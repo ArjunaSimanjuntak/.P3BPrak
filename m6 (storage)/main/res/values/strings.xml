@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">M6_storage</string>
+    <string name="button_string">add</string>
+    <string name="tv_ktrngn_string">Keterangan</string>
+    <string name="tv_harga_string">Harga</string>
+    <string name="tv_barang_string">Barang</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="size_textView">30</integer>
+    <dimen name="tv_size">30dp</dimen>
+</resources>
