@@ -13,10 +13,11 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.m8_prak.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,View.OnTouchListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener{
     private static final String TAG = "debug MainAct";
     ActivityMainBinding bindingMain;
     private Bitmap mBitmap;
@@ -94,11 +95,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //parameternya (int Color)
             }
         }
+        else if (view == this.bindingMain.btnRed) {                                                 Log.d(TAG, "onClick: view = button red");
+            if (this.canvasInitiated) {
+                this.changeStrokeColor(ResourcesCompat.getColor( getResources(), R.color.red, null) );
+            }
+        }
+        else if (view == this.bindingMain.btnGreen) {                                               Log.d(TAG, "onClick: view = button green");
+            if (this.canvasInitiated) {
+                this.changeStrokeColor(ResourcesCompat.getColor( getResources(), R.color.green, null) );
+            }
+        }
+        else if (view == this.bindingMain.btnBlue) {                                                Log.d(TAG, "onClick: view = button blue");
+            if (this.canvasInitiated) {
+                this.changeStrokeColor(ResourcesCompat.getColor( getResources(), R.color.blue, null) );
+            }
+        }
     }
 
     public void initiateCanvas(){                                                                   Log.d(TAG, "initiateCanvas: masuk");
         // 1. Create Bitmap
-        this.mBitmap = Bitmap.createBitmap(200, 200,
+//        this.mBitmap = Bitmap.createBitmap(200, 200,
+//                Bitmap.Config.ARGB_8888);
+        this.mBitmap = Bitmap.createBitmap(bindingMain.ivCanvas.getWidth(), bindingMain.ivCanvas.getHeight(),
                 Bitmap.Config.ARGB_8888);
 
         // 2. Associate the bitmap to the ImageView.
@@ -162,24 +180,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {     Log.d(TAG, "onScroll: masuk;    onScroll TRUE");
             //set path
-
             Path strokePath = new Path();
 
             //change start point for next path
             strokePath.moveTo(startPt.x, startPt.y);
 
             //draw path
-            // Path strokePath = new Path();
-//            strokePath.moveTo(<startX>, <startY>);
-
+            /* dari modul prak
+            Path strokePath = new Path();
+            strokePath.moveTo(<startX>, <startY>);
+            strokePath.lineTo(<stopX>, <stopY>);
+            strokePath.close();
+            <canvas>.drawPath(strokePath, <strokePaint>);
+            */
 
             strokePath.lineTo(e2.getX(), e2.getY());
             strokePath.close();
+
+            Log.d(TAG, "onScroll: colorintnya: " + strokePaint.getColor());
             mCanvas.drawPath(strokePath, strokePaint);
             startPt.set(e2.getX(), e2.getY());
-
+                                                                                                    Log.d(TAG, "onScroll: PAINT TRUE");
 
             //redraw
             bindingMain.ivCanvas.invalidate();
@@ -189,9 +212,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onLongPress(MotionEvent e) {
+            Log.d(TAG, "onLongPress: masuk");
+            Log.d(TAG, "onLongPress: Stroke Size: " + strokePaint.getStrokeWidth());
+
+
             //toggle change stroke + show toast
             //syntax : Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
             //			toast.show();
+            strokePaint.setStrokeWidth(strokePaint.getStrokeWidth() == 3.0f ? 20.0f : 3.0f);
+            Toast.makeText(getApplicationContext(),
+                    "Stroke size changed to " + strokePaint.getStrokeWidth(),
+                    Toast.LENGTH_SHORT).show();
+
+
 
         }
     }
